@@ -1,94 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-05-19T17:23:50+09:00</updated><id>/</id><title type="html">changjunpyo</title><subtitle>배운 것들을 정리하는 곳</subtitle><entry><title type="html">Welcome to Ghost</title><link href="/welcome" rel="alternate" type="text/html" title="Welcome to Ghost" /><published>2017-07-27T19:00:00+09:00</published><updated>2017-07-27T19:00:00+09:00</updated><id>/welcome</id><content type="html" xml:base="/welcome">&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-05-20T18:57:33+09:00</updated><id>/</id><title type="html">changjunpyo</title><subtitle>배운 것들을 정리하는 곳</subtitle><entry><title type="html">디자인패턴(1)-싱글톤 패턴</title><link href="/singleton" rel="alternate" type="text/html" title="디자인패턴(1)-싱글톤 패턴" /><published>2020-05-17T00:00:00+09:00</published><updated>2020-05-17T00:00:00+09:00</updated><id>/singleton</id><content type="html" xml:base="/singleton">&lt;h2 id=&quot;단일체singleton-패턴&quot;&gt;단일체(Singleton) 패턴&lt;/h2&gt;
+&lt;p&gt;디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 &lt;strong&gt;&lt;em&gt;싱글톤 패턴&lt;/em&gt;&lt;/strong&gt; 부터 소개한다.&lt;/p&gt;
+&lt;h4 id=&quot;목적&quot;&gt;목적&lt;/h4&gt;
 
-&lt;p&gt;We know that first impressions are important, so we’ve populated your new site with some initial &lt;strong&gt;Getting Started&lt;/strong&gt; posts that will help you get familiar with everything in no time. This is the first one!&lt;/p&gt;
+&lt;p&gt;오직 &lt;strong&gt;&lt;em&gt;한 개의 클래스 인스턴스&lt;/em&gt;&lt;/strong&gt; 만을 갖도록 보장하고, 이에 대한 전역적인 접근점을 제공함&lt;/p&gt;
 
-&lt;h3 id=&quot;there-are-a-few-things-that-you-should-know-up-front&quot;&gt;There are a few things that you should know up-front:&lt;/h3&gt;
+&lt;h4 id=&quot;필요성&quot;&gt;필요성&lt;/h4&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Ghost is designed for ambitious, professional publishers who want to actively build a business around their content. That’s who it works best for. If you’re using Ghost for some other purpose, that’s fine too - but it might not be the best choice for you.&lt;/li&gt;
-  &lt;li&gt;The entire platform can be modified and customized to suit your needs, which is very powerful, but doing so &lt;strong&gt;does&lt;/strong&gt; require some knowledge of code. Ghost is not necessarily a good platform for beginners or people who just want a simple personal blog.&lt;/li&gt;
-  &lt;li&gt;For the best experience we recommend downloading the Ghost Desktop App for your computer, which is the best way to access your Ghost site on a desktop device.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;특정한 클래스의 경우는 정확히 하나의 인스턴스를 갖도록 하는 것이 좋다. 예를 들면 파일 시스템이라던지, 윈도우 관리자라 던지 하는 것들은 하나만 존재해야 한다. DBCP(DataBase Connection pool)과 같이 공통된 객체를 여러개 생성해서 사용해야 하는 경우 단일체 패턴을 이용하게 된다면 다른 인스턴스들과 데이터를 공유하기 쉽다.&lt;/p&gt;
 
-&lt;p&gt;Ghost is made by an independent non-profit organisation called the Ghost Foundation. We are 100% self funded by revenue from our &lt;a href=&quot;https://ghost.org/pricing&quot;&gt;Ghost(Pro)&lt;/a&gt; service, and every penny we make is re-invested into funding further development of free, open source technology for modern journalism.&lt;/p&gt;
+&lt;p&gt;전역 변수를 통하여서 이객체만 접근하도록 하는 방법을 사용한다면 여러개의 인스턴스를 만들 필요가 없다. 하지만 이것보다 더 좋은 방법은 클래스가 자신이 자기의 유일한 인스턴스로 접근하는 방법을 자체적으로 관리하도록 하는 것이다. 이 클래스는 다른 인스턴스가 생성되지 않도록 하며(새로운 객체 생성 요청을 가로채서 원래 인스턴스를 주는 방식으로), 클래스 자신이 그 인스턴스에 대한 접근 방법을 제공한다. 이것을 가리켜 &lt;strong&gt;&lt;em&gt;단일체(Singleton) 패턴&lt;/em&gt;&lt;/strong&gt;이라고 한다.&lt;/p&gt;
 
-&lt;p&gt;The main thing you’ll want to read about next is probably: &lt;a href=&quot;https://demo.ghost.io/the-editor/&quot;&gt;the Ghost editor&lt;/a&gt;.&lt;/p&gt;
+&lt;h4 id=&quot;언제-써야하나&quot;&gt;언제 써야하나?&lt;/h4&gt;
 
-&lt;p&gt;Once you’re done reading, you can simply delete the default &lt;strong&gt;Ghost&lt;/strong&gt; user from your team to remove all of these introductory posts!&lt;/p&gt;</content><author><name>Junpyo</name></author><category term="checkcheck" /><summary type="html">Hey! Welcome to Ghost, it’s great to have you :)</summary></entry><entry><title type="html">Organising your content with tags</title><link href="/using-tags" rel="alternate" type="text/html" title="Organising your content with tags" /><published>2017-07-27T17:00:00+09:00</published><updated>2017-07-27T17:00:00+09:00</updated><id>/using-tags</id><content type="html" xml:base="/using-tags">&lt;p&gt;Ghost has a single, powerful organisational taxonomy, called tags.&lt;/p&gt;
-&lt;p&gt;
-  It doesn't matter whether you want to call them categories, tags, boxes, or
-  anything else. You can think of Ghost tags a lot like Gmail labels. By tagging
-  posts with one or more keyword, you can organise articles into buckets of
-  related content.
-&lt;/p&gt;
-&lt;h2 id=&quot;basictagging&quot;&gt;Basic tagging&lt;/h2&gt;
-&lt;p&gt;
-  When you write a post, you can assign tags to help differentiate between
-  categories of content. For example, you might tag some posts with
-  &lt;code&gt;News&lt;/code&gt; and other posts with &lt;code&gt;Cycling&lt;/code&gt;, which would
-  create two distinct categories of content listed on
-  &lt;code&gt;/tag/news/&lt;/code&gt; and &lt;code&gt;/tag/cycling/&lt;/code&gt;, respectively.
-&lt;/p&gt;
-&lt;p&gt;
-  If you tag a post with both &lt;code&gt;News&lt;/code&gt; &lt;em&gt;and&lt;/em&gt;
-  &lt;code&gt;Cycling&lt;/code&gt; - then it appears in both sections.
-&lt;/p&gt;
-&lt;p&gt;
-  Tag archives are like dedicated home-pages for each category of content that
-  you have. They have their own pages, their own RSS feeds, and can support
-  their own cover images and meta data.
-&lt;/p&gt;
-&lt;h2 id=&quot;theprimarytag&quot;&gt;The primary tag&lt;/h2&gt;
-&lt;p&gt;
-  Inside the Ghost editor, you can drag and drop tags into a specific order. The
-  first tag in the list is always given the most importance, and some themes
-  will only display the primary tag (the first tag in the list) by default. So
-  you can add the most important tag which you want to show up in your theme,
-  but also add a bunch of related tags which are less important.
-&lt;/p&gt;
-&lt;p&gt;
-  &lt;mark&gt;&lt;strong&gt;News&lt;/strong&gt;, Cycling, Bart Stevens, Extreme Sports&lt;/mark&gt;
-&lt;/p&gt;
-&lt;p&gt;
-  In this example, &lt;strong&gt;News&lt;/strong&gt; is the primary tag which will be
-  displayed by the theme, but the post will also still receive all the other
-  tags, and show up in their respective archives.
-&lt;/p&gt;
-&lt;h2 id=&quot;privatetags&quot;&gt;Private tags&lt;/h2&gt;
-&lt;p&gt;
-  Sometimes you may want to assign a post a specific tag, but you don't
-  necessarily want that tag appearing in the theme or creating an archive page.
-  In Ghost, hashtags are private and can be used for special styling.
-&lt;/p&gt;
-&lt;p&gt;
-  For example, if you sometimes publish posts with video content - you might
-  want your theme to adapt and get rid of the sidebar for these posts, to give
-  more space for an embedded video to fill the screen. In this case, you could
-  use private tags to tell your theme what to do.
-&lt;/p&gt;
-&lt;p&gt;
-  &lt;mark&gt;&lt;strong&gt;News&lt;/strong&gt;, Cycling, #video&lt;/mark&gt;
-&lt;/p&gt;
-&lt;p&gt;
-  Here, the theme would assign the post publicly displayed tags of
-  &lt;code&gt;News&lt;/code&gt;, and &lt;code&gt;Cycling&lt;/code&gt; - but it would also keep a private
-  record of the post being tagged with &lt;code&gt;#video&lt;/code&gt;.
-&lt;/p&gt;
-&lt;p&gt;
-  In your theme, you could then look for private tags conditionally and give
-  them special formatting:
-&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;인스턴스가 하나임을 보장하고, 그것을 사용하는 방법을 하나로 만들어야 할 때&lt;/li&gt;
+  &lt;li&gt;유일한 인스턴스가 서브 클래스로 확장되어야 하며, 소스의 수정없이 확장된 서브클래스를 이용하고자 할 때&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&quot;nohighlight&quot;&gt;{{#post}}
-    {{#has tag=&amp;quot;#video&amp;quot;}}
-        ...markup for a nice big video post layout...
-    {{else}}
-        ...regular markup for a post...
-    {{/has}}
-{{/post}}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;
-  You can find documentation for theme development techniques like this and many
-  more over on Ghost's extensive
-  &lt;a href=&quot;https://themes.ghost.org/&quot;&gt;theme documentation&lt;/a&gt;.
-&lt;/p&gt;</content><author><name>ghost</name></author><category term="Getting started" /><summary type="html">Ghost has a single, powerful organisational taxonomy, called tags. It doesn't matter whether you want to call them categories, tags, boxes, or anything else. You can think of Ghost tags a lot like Gmail labels. By tagging posts with one or more keyword, you can organise articles into buckets of related content. Basic tagging When you write a post, you can assign tags to help differentiate between categories of content. For example, you might tag some posts with News and other posts with Cycling, which would create two distinct categories of content listed on /tag/news/ and /tag/cycling/, respectively. If you tag a post with both News and Cycling - then it appears in both sections. Tag archives are like dedicated home-pages for each category of content that you have. They have their own pages, their own RSS feeds, and can support their own cover images and meta data. The primary tag Inside the Ghost editor, you can drag and drop tags into a specific order. The first tag in the list is always given the most importance, and some themes will only display the primary tag (the first tag in the list) by default. So you can add the most important tag which you want to show up in your theme, but also add a bunch of related tags which are less important. News, Cycling, Bart Stevens, Extreme Sports In this example, News is the primary tag which will be displayed by the theme, but the post will also still receive all the other tags, and show up in their respective archives. Private tags Sometimes you may want to assign a post a specific tag, but you don't necessarily want that tag appearing in the theme or creating an archive page. In Ghost, hashtags are private and can be used for special styling. For example, if you sometimes publish posts with video content - you might want your theme to adapt and get rid of the sidebar for these posts, to give more space for an embedded video to fill the screen. In this case, you could use private tags to tell your theme what to do. News, Cycling, #video Here, the theme would assign the post publicly displayed tags of News, and Cycling - but it would also keep a private record of the post being tagged with #video. In your theme, you could then look for private tags conditionally and give them special formatting: {{#post}} {{#has tag=&amp;quot;#video&amp;quot;}} ...markup for a nice big video post layout... {{else}} ...regular markup for a post... {{/has}} {{/post}} You can find documentation for theme development techniques like this and many more over on Ghost's extensive theme documentation.</summary></entry></feed>
+&lt;h4 id=&quot;문제점&quot;&gt;문제점&lt;/h4&gt;
+
+&lt;p&gt;일단 싱글톤의 경우는 기본적으로 전역 변수와 같이 전역적인 특성을 가지고 있게 된다. 따라서 다른 객체와 공통으로 사용하는 경우와 같은 여러 케이스가 아닌 경우는 문제가 생길 수 있다. 싱글톤이 만약 다양한 역할을 가지고 복잡한 일을 하게 되는 경우 다른 객체와의 결합도가 높아져 OOP의 원칙중 OCP(개방 폐쇄 원칙)을 위반하는 것이 된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;구현&quot;&gt;구현&lt;/h4&gt;
+
+&lt;p&gt;java의 경우는 여러가지의 구현 방식이 존재 하며 그것마다 각각의 특징을 가지고 있다.&lt;/p&gt;
+
+&lt;h5 id=&quot;static&quot;&gt;Static&lt;/h5&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// static instance&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// construct를 private&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Create instance fail&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같이 사용하게 되면 클래스가 사용되는 시점이 아닌 클래스를 로딩하는 시점에 생성을 하게 된다.&lt;/p&gt;
+
+&lt;h5 id=&quot;lazy-init&quot;&gt;Lazy init&lt;/h5&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위의 방법을 개선하여 클래스가 사용되는 시점에 인스턴스를 생성하게 된다. 하지만 멀티스레딩을 사용하는 경우 취약한 환경이 된다.&lt;/p&gt;
+
+&lt;h5 id=&quot;lazy-init--thread-safe&quot;&gt;Lazy init + Thread safe&lt;/h5&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;멀티 스레딩 환경에서도 쓰레드 세이프한 방법을 통해 구현 하였다. 하지만 synchronized의 경우는 성능을 많이 저하시키게 된다.&lt;/p&gt;
+
+&lt;h5 id=&quot;holder&quot;&gt;Holder&lt;/h5&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SingletonHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SingletonHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;JVM의 클래스 로더 메커니즘과 클래스의 로드 시점을 이용하여 내부 클래스를 통해 생성 시킴으로써 쓰레드 간의 동기화 문제를 해결한다. holder안에 선언된 instance는 클래스 로드시 한번만 선언되어 생성 될 것이고 final을 이용하여 변경되지 않게 해준다.&lt;/p&gt;
+
+&lt;h3 id=&quot;reference&quot;&gt;reference&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeong-pro.tistory.com/86&quot;&gt;https://jeong-pro.tistory.com/86&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;‘GOF의 디자인 패턴’&lt;/p&gt;</content><author><name>Junpyo</name></author><category term="design pattern" /><summary type="html">단일체(Singleton) 패턴 디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 싱글톤 패턴 부터 소개한다. 목적</summary></entry></feed>
