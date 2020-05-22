@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
+  <link href="/tag/operating-system/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2020-05-22T16:13:14+09:00</updated>
+  <id>/tag/operating-system/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">changjunpyo | </title>
+  
+
+  
+    <subtitle>배운 것들을 정리하는 곳</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Thread - OS(2)</title>
+      <link href="/os-thread" rel="alternate" type="text/html" title="Thread - OS(2)" />
+      <published>2020-04-17T00:00:00+09:00</published>
+      <updated>2020-04-17T00:00:00+09:00</updated>
+      <id>/os-thread</id>
+      <content type="html" xml:base="/os-thread">&lt;h2 id=&quot;process-모델의-한계점&quot;&gt;Process 모델의 한계점&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Cooperation 프로세스의 관점&lt;/strong&gt;
+웹 서버와 같이 자기 프로세스를 복사(fork)하여서 이용하는데, 만약 공유되는 주소 공간이나 자원이 있는 경우에 낭비가 심하다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;멀티 프로세싱의 관점&lt;/strong&gt;
+고전적 프로세스의 모델에서는 하나의 프로세스는 하나의 프로세서만을 이용함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;thread&quot;&gt;Thread&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로세스는 무겁다(heavy-weight)
+    &lt;ul&gt;
+      &lt;li&gt;프로세스는 image+ context를 전부 가지고 있음&lt;/li&gt;
+      &lt;li&gt;새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을 매우 비용이 많이듬.&lt;/li&gt;
+      &lt;li&gt;IPC를 통해 데이터 전달하는 것은 OS를 한번 거치므로 비용 많이듬.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Thread
+프로그램에 의해서 실행되는 일련의 명령들&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;PC(program counter) + Stack(+SP) + data registers&lt;/li&gt;
+      &lt;li&gt;대부분의 데이터, 이미지들을 공유함&lt;/li&gt;
+      &lt;li&gt;프로세스의 OS 상태 또한 공유&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;process-vs-thread&quot;&gt;Process vs Thread&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;고전적 해석
+    &lt;ul&gt;
+      &lt;li&gt;프로세스는 쓰레드를 담고있는 컨테이너(하나의 프로세스안에 여러개의 쓰레드를 포함)&lt;/li&gt;
+      &lt;li&gt;프로세스는 정적, 쓰레드는 동적&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;공통점
+    &lt;ul&gt;
+      &lt;li&gt;각각 각자 자신의 실행 흐름을 가짐&lt;/li&gt;
+      &lt;li&gt;각각은 서로 다르게 스케쥴링&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;차이점&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Thead는 코드, 데이터를 공유, Process 는 공유 X&lt;/li&gt;
+      &lt;li&gt;Thread는 생성하는데 있어서 코스트가 Process에 비해서 매우 작음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;thread의-이점&quot;&gt;Thread의 이점&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;경제성&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;concurrency를 만드는 것이 쉽다(싸다).&lt;/li&gt;
+      &lt;li&gt;생성, 종료, 컨텍스트 스위칭의 시간이 적게든다(프로세스의 비해서)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;자원을 공유하므로 커뮤니케이션을 하는게 쉽다.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;여럿의 쓰레드는 같은 주소에서 같은 메모리와 파일들을 공유하므로 커널을 통하지 않아도 커뮤니케이션 가능&lt;/li&gt;
+      &lt;li&gt;반응속도 빠르다&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;멀티 프로세서를 잘 이용가능&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;각각의 쓰레드는 다른 프로세서에서 동작 가능&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;user-level-thread-vs-kernel-level-thread&quot;&gt;User-level-thread VS kernel-level-thread&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;user-level-thread: 특정 라이브러리가 쓰레드와 관련된 것들을 관리.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;kernel-level-thread: OS가 쓰레드 생성과 관리를 하는데 있어서 관여(시스템콜 필요)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;유저-레벨-쓰레드&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;유저-레벨-쓰레드 라이브러리에서 모든 것을 관리&lt;/li&gt;
+      &lt;li&gt;커널은 아무것도 관여 하지 않음&lt;/li&gt;
+      &lt;li&gt;장점: 매우 가볍다. 생성, 관리, 스케쥴링을 모든 유저라이브러리에서 관여(mini-kernel)&lt;/li&gt;
+      &lt;li&gt;단점: I/O로 하나가 블락만 되도 전부 블락, 멀티 프로세서의 효과를 전혀 볼수 없음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;커널-레벨-쓰레드
+    &lt;ul&gt;
+      &lt;li&gt;커널에 의해서 쓰레드가 생성되고 관리됨&lt;/li&gt;
+      &lt;li&gt;각각이 따로 스케쥴됨&lt;/li&gt;
+      &lt;li&gt;각각의 커널 스택을 갖고 있음&lt;/li&gt;
+      &lt;li&gt;kernel context와 글로벌 데이터를 공유&lt;/li&gt;
+      &lt;li&gt;커널의 일반적인 싱크로나이즈 하는 방식을 따름&lt;/li&gt;
+      &lt;li&gt;one to one model &amp;amp; many to many model(user-level-thread 방식을 믹스한 것)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Junpyo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="operating system" />
+      
+        <category term="os" />
+      
+
+      
+        <summary type="html">Process 모델의 한계점</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Process - OS(1)</title>
+      <link href="/os-process" rel="alternate" type="text/html" title="Process - OS(1)" />
+      <published>2020-04-17T00:00:00+09:00</published>
+      <updated>2020-04-17T00:00:00+09:00</updated>
+      <id>/os-process</id>
+      <content type="html" xml:base="/os-process">&lt;h1 id=&quot;process&quot;&gt;Process&lt;/h1&gt;
+
+&lt;p&gt;실행 중인 프로그램(an instance of a running program)&lt;/p&gt;
+
+&lt;h2 id=&quot;process의-구성&quot;&gt;Process의 구성&lt;/h2&gt;
+
+&lt;h3 id=&quot;images&quot;&gt;Images&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Code: 명령 코드(instrunction code)&lt;/li&gt;
+  &lt;li&gt;Data: 다양한 변수(전역)&lt;/li&gt;
+  &lt;li&gt;Stack: 함수 call을 위한 states들&lt;/li&gt;
+  &lt;li&gt;Heap: 동적 메모리&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;process-context&quot;&gt;Process context&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Program context - 데이터 레지스터(data register) - 프로그램 카운터(PC), 스택 포인터(SP)&lt;/li&gt;
+  &lt;li&gt;Kernel context - pid,gid,sid,env… - VM structure(페이지 테이블) - open files, signal handlers…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;process-control-blockpcb-aka-pdprocess-descriptor&quot;&gt;Process control Block(PCB) a.k.a PD(Process Descriptor)&lt;/h2&gt;
+
+&lt;p&gt;프로세스에 관련 된 정보를 가지고 있는 자료 구조(structure)&lt;/p&gt;
+
+&lt;h3 id=&quot;pcb의-구성&quot;&gt;PCB의 구성&lt;/h3&gt;
+
+&lt;h4 id=&quot;image&quot;&gt;Image&lt;/h4&gt;
+
+&lt;h4 id=&quot;process-context-1&quot;&gt;Process context&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;program context&lt;/li&gt;
+  &lt;li&gt;kernel context&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;리눅스에서는 task_struct라고 구현 되어있음&lt;/p&gt;
+
+&lt;h2 id=&quot;process-state-5-state-model&quot;&gt;Process State: 5-State model&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;new: 프로세스가 생성됨&lt;/li&gt;
+  &lt;li&gt;ready: ready queue에서 프로세서에 의하여 스케쥴 되기 기다리는 상태&lt;/li&gt;
+  &lt;li&gt;running: 프로세스가 instruction 실행 중&lt;/li&gt;
+  &lt;li&gt;blocked(waited): 프로세스가 특정 이벤트(e.g 입출력 완료, signal)를 기다리는 상태&lt;/li&gt;
+  &lt;li&gt;exit(terminated): 프로세스가 종료된 상태
+&lt;img src=&quot;https://images.velog.io/images/changjunpyo/post/b5417760-aed7-4e17-a105-788587b64239/image.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;process-switching&quot;&gt;Process Switching&lt;/h2&gt;
+
+&lt;h3 id=&quot;dual-mode-operation&quot;&gt;Dual mode operation&lt;/h3&gt;
+
+&lt;p&gt;대부분의 OS는 특정한 H/W를 이용해서 user가 직접적으로 low-level의 H/W 와 교류하거나임의의 메모리 주소에 접근하는 것을 막는다.&lt;/p&gt;
+
+&lt;p&gt;2가지의 CPU의 모드를 가진다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;유저 모드(User mode)
+    &lt;ul&gt;
+      &lt;li&gt;권한이 적은 모드&lt;/li&gt;
+      &lt;li&gt;유저의 프로그램은 보통 이 상태로 실행됨&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;커널 모드(Kernel mode)
+    &lt;ul&gt;
+      &lt;li&gt;권한이 높은 모드&lt;/li&gt;
+      &lt;li&gt;그 프로세스의 명령문 ,레지스터, 메모리에 대한 권한을 가짐&lt;/li&gt;
+      &lt;li&gt;OS의 핵심&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;process-switching-1&quot;&gt;Process switching&lt;/h3&gt;
+
+&lt;p&gt;** 실행 중인 프로세스 인터럽트 되거나 프로세서(processor)에 의해 강제로 다른 프로세스가 실행(running state)되게 할 때, 실행 중이던 프로세스가 다른 프로세스에게 넘겨주는 과정을 말함**&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;언제 process swiching이 일어남?
+아래 &lt;strong&gt;3가지 경우에 일어날 수&lt;/strong&gt;도 있음( 안 일어난다는건? -&amp;gt; 모드 스위칭만 일어난 경우!)
+    &lt;ul&gt;
+      &lt;li&gt;외부 인터럽트(External Interrupt): 타이머, I/O 인터럽트&lt;/li&gt;
+      &lt;li&gt;내부 트랩(Exception): 페이지 폴트, 잘못된 operation(divide by 0)&lt;/li&gt;
+      &lt;li&gt;시스템 콜(syscall): I/O 명령, fork&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로세스 스위칭(Process switching) VS 모드 스위칭(Mode Switching)
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;모드 스위칭&lt;/strong&gt;: 위 3가지(외부 인터럽트, 내부 트랩, 시스템콜) 경우 &lt;strong&gt;항상&lt;/strong&gt; 모드 스위칭이 일어남
+과정
+        &lt;ul&gt;
+          &lt;li&gt;현재 프로세스의 상태(process context- reg, flags(PC,SP))를 저장&lt;/li&gt;
+          &lt;li&gt;PC를 특정한 곳으로 향하게함(커널 모드를 수행하기 위한 장소)&lt;/li&gt;
+          &lt;li&gt;커널 모드가 수행됨으로 특정 권한의 명령을 수행가능.
+모드 스위칭만 하고 프로세스 스위칭을 하지 않는 경우 process context의 저장과 간단한 복원만 일어남(overhead가 적음)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;프로세스 스위칭&lt;/strong&gt;: 모드 스위치가 일어나고 경우에 따라 프로세스 스위칭이 일어남
+과정
+        &lt;ul&gt;
+          &lt;li&gt;현재 프로세스의 context(process context)를 저장 - 어디에? 커널 스택에(PCB에서 context 저장)&lt;/li&gt;
+          &lt;li&gt;현재 프로세스의 상태를 바꾸어준다. running -&amp;gt; blocked/ready/exit&lt;/li&gt;
+          &lt;li&gt;PCB를 적절한 queue에 넣어줌&lt;/li&gt;
+          &lt;li&gt;다른 실행될 process를 스케쥴러를 통하여 선정&lt;/li&gt;
+          &lt;li&gt;선정된 process를 적절한 queue로 부터 가져옴&lt;/li&gt;
+          &lt;li&gt;실행될 프로세스의 상태를 running 으로 바꿈&lt;/li&gt;
+          &lt;li&gt;실행될 프로세스의 context(register, flags)를 복원 한다.
+프로세스 스위칭을 하는 동안 프로세서는 진행 상황(process들)이 없게 됨.
+OS가 복잡 할수록 context 스위칭을 하는 동안 하는 일이 많아짐.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;is-the-os-a-process&quot;&gt;is the OS a process?&lt;/h2&gt;
+
+&lt;p&gt;OS도 processor에 의하여 실행되어야함. 그렇다면 어떤 방식으로 ?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(A)&lt;/strong&gt; 프로세스가 아닌 커널
+&lt;strong&gt;(B)&lt;/strong&gt; 유저 프로세스 안에서 실행되는 커널
+&lt;strong&gt;(C)&lt;/strong&gt; 프로세스로 취급 되는 커널&lt;/p&gt;
+
+&lt;p&gt;(B)의 방식이 리눅스에서 이용되며 모드 스위치만 일어나는 경우 오버헤드가 적은 장점이 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;cooperating-processes&quot;&gt;Cooperating Processes&lt;/h2&gt;
+
+&lt;h3 id=&quot;communication&quot;&gt;Communication&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Data exchange&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;synchronization&quot;&gt;Synchronization&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ordering between activities&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;process-coordinationcommunication--synchronization&quot;&gt;Process coordination(Communication &amp;amp; Synchronization)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Application programming (e.g shared memory)&lt;/li&gt;
+  &lt;li&gt;IPC(Inter-process communication)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;interprocess-communication&quot;&gt;Interprocess communication&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;IPC&lt;/strong&gt;
+프로세스간의 communication과 synchronize를 위한 장치.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;IPC Models&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;하나의 컴퓨터에서 2개의 process간의 IPC&lt;/li&gt;
+  &lt;li&gt;다른 컴퓨터에서 2개의 process간의 IPC&lt;/li&gt;
+  &lt;li&gt;Client-Server model&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;UNIX의 IPC 종류&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Basic IPC : Pipe,FIFO(named pipe)&lt;/li&gt;
+  &lt;li&gt;Advanced IPC
+    &lt;ul&gt;
+      &lt;li&gt;Message passing&lt;/li&gt;
+      &lt;li&gt;semaphore&lt;/li&gt;
+      &lt;li&gt;shared memory&lt;/li&gt;
+      &lt;li&gt;socket(internet IPC , TCP/UDP)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Junpyo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="operating system" />
+      
+        <category term="os" />
+      
+
+      
+        <summary type="html">Process</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

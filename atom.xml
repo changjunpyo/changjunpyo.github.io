@@ -23,5 +23,50 @@
       </item>
       
     
+      
+      <item>
+        <title>Thread - OS(2)</title>
+        
+          <description>&lt;h2 id=&quot;process-모델의-한계점&quot;&gt;Process 모델의 한계점&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Fri, 17 Apr 2020 00:00:00 +0900</pubDate>
+        <link>
+        /os-thread</link>
+        <guid isPermaLink="true">/os-thread</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Process - OS(1)</title>
+        
+          <description>&lt;h1 id=&quot;process&quot;&gt;Process&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Fri, 17 Apr 2020 00:00:00 +0900</pubDate>
+        <link>
+        /os-process</link>
+        <guid isPermaLink="true">/os-process</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>binary(upper_bound, under_bound)의 구현</title>
+        
+          <description>&lt;h2 id=&quot;이분탐색&quot;&gt;이분탐색&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Wed, 04 Mar 2020 00:00:00 +0900</pubDate>
+        <link>
+        /binary-search</link>
+        <guid isPermaLink="true">/binary-search</guid>
+      </item>
+      
+    
   </channel>
 </rss>

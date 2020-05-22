@@ -11,7 +11,7 @@
 
 
 
-    <title>디자인패턴(1)-싱글톤 패턴</title>
+    <title>Thread - OS(2)</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -36,30 +36,30 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="배운 것들을 정리하는 곳" />
     <link rel="shortcut icon" href="/assets/images/golang-vector-1-transparent.png" type="image/png" />
-    <link rel="canonical" href="/singleton" />
+    <link rel="canonical" href="/os-thread" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="changjunpyo" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="디자인패턴(1)-싱글톤 패턴" />
-    <meta property="og:description" content="단일체(Singleton) 패턴 디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 싱글톤 패턴 부터 소개한다. 목적 오직 한 개의 클래스 인스턴스 만을 갖도록 보장하고, 이에 대한 전역적인" />
-    <meta property="og:url" content="/singleton" />
-    <meta property="og:image" content="/assets/images/mike-kenneally-zlwDJoKTuA8-unsplash.jpg" />
+    <meta property="og:title" content="Thread - OS(2)" />
+    <meta property="og:description" content="Process 모델의 한계점 Cooperation 프로세스의 관점 웹 서버와 같이 자기 프로세스를 복사(fork)하여서 이용하는데, 만약 공유되는 주소 공간이나 자원이 있는 경우에 낭비가 심하다. 멀티 프로세싱의 관점 고전적 프로세스의 모델에서는 하나의 프로세스는 하나의 프로세서만을 이용함 Thread 프로세스는 무겁다(heavy-weight) 프로세스는 image+ context를 전부 가지고 있음 새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을" />
+    <meta property="og:url" content="/os-thread" />
+    <meta property="og:image" content="/assets/images/hello-i-m-nik-MAgPyHRO0AA-unsplash.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/changjunpyo" />
     <meta property="article:author" content="https://www.facebook.com/changjunpyo" />
-    <meta property="article:published_time" content="2020-05-17T00:00:00+09:00" />
-    <meta property="article:modified_time" content="2020-05-17T00:00:00+09:00" />
-    <meta property="article:tag" content="Design Pattern" />
+    <meta property="article:published_time" content="2020-04-17T00:00:00+09:00" />
+    <meta property="article:modified_time" content="2020-04-17T00:00:00+09:00" />
+    <meta property="article:tag" content="Operating System" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="디자인패턴(1)-싱글톤 패턴" />
-    <meta name="twitter:description" content="단일체(Singleton) 패턴 디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 싱글톤 패턴 부터 소개한다. 목적 오직 한 개의 클래스 인스턴스 만을 갖도록 보장하고, 이에 대한 전역적인" />
+    <meta name="twitter:title" content="Thread - OS(2)" />
+    <meta name="twitter:description" content="Process 모델의 한계점 Cooperation 프로세스의 관점 웹 서버와 같이 자기 프로세스를 복사(fork)하여서 이용하는데, 만약 공유되는 주소 공간이나 자원이 있는 경우에 낭비가 심하다. 멀티 프로세싱의 관점 고전적 프로세스의 모델에서는 하나의 프로세스는 하나의 프로세서만을 이용함 Thread 프로세스는 무겁다(heavy-weight) 프로세스는 image+ context를 전부 가지고 있음 새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을" />
     <meta name="twitter:url" content="/" />
-    <meta name="twitter:image" content="/assets/images/mike-kenneally-zlwDJoKTuA8-unsplash.jpg" />
+    <meta name="twitter:image" content="/assets/images/hello-i-m-nik-MAgPyHRO0AA-unsplash.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="changjunpyo" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Design Pattern" />
+    <meta name="twitter:data2" content="Operating System" />
     <meta name="twitter:site" content="@" />
     <meta name="twitter:creator" content="@" />
     <meta property="og:image:width" content="1400" />
@@ -74,18 +74,18 @@
         "name": "changjunpyo",
         "logo": "/assets/images/golang-vector-1-transparent.png"
     },
-    "url": "/singleton",
+    "url": "/os-thread",
     "image": {
         "@type": "ImageObject",
-        "url": "/assets/images/mike-kenneally-zlwDJoKTuA8-unsplash.jpg",
+        "url": "/assets/images/hello-i-m-nik-MAgPyHRO0AA-unsplash.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/singleton"
+        "@id": "/os-thread"
     },
-    "description": "단일체(Singleton) 패턴 디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 싱글톤 패턴 부터 소개한다. 목적 오직 한 개의 클래스 인스턴스 만을 갖도록 보장하고, 이에 대한 전역적인"
+    "description": "Process 모델의 한계점 Cooperation 프로세스의 관점 웹 서버와 같이 자기 프로세스를 복사(fork)하여서 이용하는데, 만약 공유되는 주소 공간이나 자원이 있는 경우에 낭비가 심하다. 멀티 프로세싱의 관점 고전적 프로세스의 모델에서는 하나의 프로세스는 하나의 프로세서만을 이용함 Thread 프로세스는 무겁다(heavy-weight) 프로세스는 image+ context를 전부 가지고 있음 새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을"
 }
     </script>
 
@@ -98,7 +98,7 @@
     </script> -->
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="디자인패턴(1)-싱글톤 패턴" href="/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Thread - OS(2)" href="/feed.xml" />
 
 
 </head>
@@ -156,133 +156,146 @@ into the {body} of the default.hbs template -->
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
-        <article class="post-full  tag-design-pattern post ">
+        <article class="post-full  tag-operating-system tag-os post ">
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="17 May 2020">17 May 2020</time>
+                    <time class="post-full-meta-date" datetime="17 April 2020">17 April 2020</time>
                     
                         <span class="date-divider">/</span>
                         
                             
-                               <a href='/tag/design-pattern/'>DESIGN PATTERN</a>
+                               <a href='/tag/operating-system/'>OPERATING SYSTEM</a>,
+                            
+                        
+                            
+                               <a href='/tag/os/'>OS</a>
                             
                         
                     
                 </section>
-                <h1 class="post-full-title">디자인패턴(1)-싱글톤 패턴</h1>
+                <h1 class="post-full-title">Thread - OS(2)</h1>
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/assets/images/mike-kenneally-zlwDJoKTuA8-unsplash.jpg)">
+            <figure class="post-full-image" style="background-image: url(/assets/images/hello-i-m-nik-MAgPyHRO0AA-unsplash.jpg)">
             </figure>
             
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <h2 id="단일체singleton-패턴">단일체(Singleton) 패턴</h2>
-<p>디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 <strong><em>싱글톤 패턴</em></strong> 부터 소개한다.</p>
-<h4 id="목적">목적</h4>
-
-<p>오직 <strong><em>한 개의 클래스 인스턴스</em></strong> 만을 갖도록 보장하고, 이에 대한 전역적인 접근점을 제공함</p>
-
-<h4 id="필요성">필요성</h4>
-
-<p>특정한 클래스의 경우는 정확히 하나의 인스턴스를 갖도록 하는 것이 좋다. 예를 들면 파일 시스템이라던지, 윈도우 관리자라 던지 하는 것들은 하나만 존재해야 한다. DBCP(DataBase Connection pool)과 같이 공통된 객체를 여러개 생성해서 사용해야 하는 경우 단일체 패턴을 이용하게 된다면 다른 인스턴스들과 데이터를 공유하기 쉽다.</p>
-
-<p>전역 변수를 통하여서 이객체만 접근하도록 하는 방법을 사용한다면 여러개의 인스턴스를 만들 필요가 없다. 하지만 이것보다 더 좋은 방법은 클래스가 자신이 자기의 유일한 인스턴스로 접근하는 방법을 자체적으로 관리하도록 하는 것이다. 이 클래스는 다른 인스턴스가 생성되지 않도록 하며(새로운 객체 생성 요청을 가로채서 원래 인스턴스를 주는 방식으로), 클래스 자신이 그 인스턴스에 대한 접근 방법을 제공한다. 이것을 가리켜 <strong><em>단일체(Singleton) 패턴</em></strong>이라고 한다.</p>
-
-<h4 id="언제-써야하나">언제 써야하나?</h4>
+                    <h2 id="process-모델의-한계점">Process 모델의 한계점</h2>
 
 <ul>
-  <li>인스턴스가 하나임을 보장하고, 그것을 사용하는 방법을 하나로 만들어야 할 때</li>
-  <li>유일한 인스턴스가 서브 클래스로 확장되어야 하며, 소스의 수정없이 확장된 서브클래스를 이용하고자 할 때</li>
+  <li><strong>Cooperation 프로세스의 관점</strong>
+웹 서버와 같이 자기 프로세스를 복사(fork)하여서 이용하는데, 만약 공유되는 주소 공간이나 자원이 있는 경우에 낭비가 심하다.</li>
+  <li><strong>멀티 프로세싱의 관점</strong>
+고전적 프로세스의 모델에서는 하나의 프로세스는 하나의 프로세서만을 이용함</li>
 </ul>
 
-<h4 id="문제점">문제점</h4>
+<h2 id="thread">Thread</h2>
 
-<p>일단 싱글톤의 경우는 기본적으로 전역 변수와 같이 전역적인 특성을 가지고 있게 된다. 따라서 다른 객체와 공통으로 사용하는 경우와 같은 여러 케이스가 아닌 경우는 문제가 생길 수 있다. 싱글톤이 만약 다양한 역할을 가지고 복잡한 일을 하게 되는 경우 다른 객체와의 결합도가 높아져 OOP의 원칙중 OCP(개방 폐쇄 원칙)을 위반하는 것이 된다.</p>
+<ul>
+  <li>프로세스는 무겁다(heavy-weight)
+    <ul>
+      <li>프로세스는 image+ context를 전부 가지고 있음</li>
+      <li>새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을 매우 비용이 많이듬.</li>
+      <li>IPC를 통해 데이터 전달하는 것은 OS를 한번 거치므로 비용 많이듬.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Thread
+프로그램에 의해서 실행되는 일련의 명령들</p>
 
-<h4 id="구현">구현</h4>
+    <ul>
+      <li>PC(program counter) + Stack(+SP) + data registers</li>
+      <li>대부분의 데이터, 이미지들을 공유함</li>
+      <li>프로세스의 OS 상태 또한 공유</li>
+    </ul>
+  </li>
+</ul>
 
-<p>java의 경우는 여러가지의 구현 방식이 존재 하며 그것마다 각각의 특징을 가지고 있다.</p>
+<h3 id="process-vs-thread">Process vs Thread</h3>
 
-<h5 id="static">Static</h5>
+<ul>
+  <li>고전적 해석
+    <ul>
+      <li>프로세스는 쓰레드를 담고있는 컨테이너(하나의 프로세스안에 여러개의 쓰레드를 포함)</li>
+      <li>프로세스는 정적, 쓰레드는 동적</li>
+    </ul>
+  </li>
+  <li>공통점
+    <ul>
+      <li>각각 각자 자신의 실행 흐름을 가짐</li>
+      <li>각각은 서로 다르게 스케쥴링</li>
+    </ul>
+  </li>
+  <li>
+    <p>차이점</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span><span class="o">{</span>
-  <span class="c1">// static instance</span>
-  <span class="kd">private</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span><span class="o">;</span>
-  <span class="c1">// construct를 private</span>
-  <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">(){}</span>
+    <ul>
+      <li>Thead는 코드, 데이터를 공유, Process 는 공유 X</li>
+      <li>Thread는 생성하는데 있어서 코스트가 Process에 비해서 매우 작음</li>
+    </ul>
+  </li>
+</ul>
 
-  <span class="kd">static</span> <span class="o">{</span>
-    <span class="k">try</span><span class="o">{</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="o">();}</span>
-    <span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span><span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">"Create instance fail"</span><span class="o">)}</span>
-  <span class="o">}</span>
+<h3 id="thread의-이점">Thread의 이점</h3>
 
-  <span class="kd">public</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">(){</span>
-    <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<ul>
+  <li>
+    <p>경제성</p>
 
-<p>위와 같이 사용하게 되면 클래스가 사용되는 시점이 아닌 클래스를 로딩하는 시점에 생성을 하게 된다.</p>
+    <ul>
+      <li>concurrency를 만드는 것이 쉽다(싸다).</li>
+      <li>생성, 종료, 컨텍스트 스위칭의 시간이 적게든다(프로세스의 비해서)</li>
+    </ul>
+  </li>
+  <li>
+    <p>자원을 공유하므로 커뮤니케이션을 하는게 쉽다.</p>
 
-<h5 id="lazy-init">Lazy init</h5>
+    <ul>
+      <li>여럿의 쓰레드는 같은 주소에서 같은 메모리와 파일들을 공유하므로 커널을 통하지 않아도 커뮤니케이션 가능</li>
+      <li>반응속도 빠르다</li>
+    </ul>
+  </li>
+  <li>
+    <p>멀티 프로세서를 잘 이용가능</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span><span class="o">{</span>
+    <ul>
+      <li>각각의 쓰레드는 다른 프로세서에서 동작 가능</li>
+    </ul>
+  </li>
+</ul>
 
-  <span class="kd">private</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span><span class="o">;</span>
+<h3 id="user-level-thread-vs-kernel-level-thread">User-level-thread VS kernel-level-thread</h3>
 
-  <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">(){}</span>
+<ul>
+  <li>user-level-thread: 특정 라이브러리가 쓰레드와 관련된 것들을 관리.</li>
+  <li>
+    <p>kernel-level-thread: OS가 쓰레드 생성과 관리를 하는데 있어서 관여(시스템콜 필요)</p>
+  </li>
+  <li>
+    <p>유저-레벨-쓰레드</p>
 
-  <span class="kd">public</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">(){</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="o">();}</span>
-    <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>위의 방법을 개선하여 클래스가 사용되는 시점에 인스턴스를 생성하게 된다. 하지만 멀티스레딩을 사용하는 경우 취약한 환경이 된다.</p>
-
-<h5 id="lazy-init--thread-safe">Lazy init + Thread safe</h5>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span><span class="o">{</span>
-
-  <span class="kd">private</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span><span class="o">;</span>
-
-  <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">(){}</span>
-
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">(){</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="o">();}</span>
-    <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>멀티 스레딩 환경에서도 쓰레드 세이프한 방법을 통해 구현 하였다. 하지만 synchronized의 경우는 성능을 많이 저하시키게 된다.</p>
-
-<h5 id="holder">Holder</h5>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span><span class="o">{</span>
-
-  <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">(){}</span>
-
-  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nf">SingletonHolder</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="o">();</span>
-  <span class="o">}</span>
-  <span class="kd">public</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">(){</span>
-    <span class="k">return</span> <span class="n">SingletonHolder</span><span class="o">.</span><span class="na">instance</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>JVM의 클래스 로더 메커니즘과 클래스의 로드 시점을 이용하여 내부 클래스를 통해 생성 시킴으로써 쓰레드 간의 동기화 문제를 해결한다. holder안에 선언된 instance는 클래스 로드시 한번만 선언되어 생성 될 것이고 final을 이용하여 변경되지 않게 해준다.</p>
-
-<h3 id="reference">reference</h3>
-<p><a href="https://jeong-pro.tistory.com/86">https://jeong-pro.tistory.com/86</a></p>
-
-<p>‘GOF의 디자인 패턴’</p>
+    <ul>
+      <li>유저-레벨-쓰레드 라이브러리에서 모든 것을 관리</li>
+      <li>커널은 아무것도 관여 하지 않음</li>
+      <li>장점: 매우 가볍다. 생성, 관리, 스케쥴링을 모든 유저라이브러리에서 관여(mini-kernel)</li>
+      <li>단점: I/O로 하나가 블락만 되도 전부 블락, 멀티 프로세서의 효과를 전혀 볼수 없음</li>
+    </ul>
+  </li>
+  <li>커널-레벨-쓰레드
+    <ul>
+      <li>커널에 의해서 쓰레드가 생성되고 관리됨</li>
+      <li>각각이 따로 스케쥴됨</li>
+      <li>각각의 커널 스택을 갖고 있음</li>
+      <li>kernel context와 글로벌 데이터를 공유</li>
+      <li>커널의 일반적인 싱크로나이즈 하는 방식을 따름</li>
+      <li>one to one model &amp; many to many model(user-level-thread 방식을 믹스한 것)</li>
+    </ul>
+  </li>
+</ul>
 
                 </div>
             </section>
@@ -338,9 +351,9 @@ into the {body} of the default.hbs template -->
                     <div id="disqus_thread"></div>
                     <script>
                         var disqus_config = function () {
-                            this.page.url = '/singleton';
-                            this.page.identifier = '/singleton';
-                            this.page.title = '디자인패턴(1)-싱글톤 패턴';
+                            this.page.url = '/os-thread';
+                            this.page.identifier = '/os-thread';
+                            this.page.title = 'Thread - OS(2)';
                         };
                         (function() {
                             var d = document, s = d.createElement('script');
@@ -365,9 +378,103 @@ into the {body} of the default.hbs template -->
                 
                 
                 
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.jpg)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; changjunpyo &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/operating-system/">Operating system</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/os-process">Process - OS(1)</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/operating-system/">
+                                
+                                    See all 1 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
             
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/singleton">
+                <div class="post-card-image" style="background-image: url(/assets/images/mike-kenneally-zlwDJoKTuA8-unsplash.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/singleton">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">Design pattern</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">디자인패턴(1)-싱글톤 패턴</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/IMG_0617.JPG" alt="Junpyo" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/changjunpyo/">Junpyo</a>
+                        </span>
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      1 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
             
 
             <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
@@ -376,12 +483,12 @@ into the {body} of the default.hbs template -->
 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/os-thread">
-                <div class="post-card-image" style="background-image: url(/assets/images/hello-i-m-nik-MAgPyHRO0AA-unsplash.jpg)"></div>
+            <a class="post-card-image-link" href="/os-process">
+                <div class="post-card-image" style="background-image: url(/assets/images/new-data-services-Ar-iTL4QKl4-unsplash.jpg)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/os-thread">
+            <a class="post-card-content-link" href="/os-process">
                 <header class="post-card-header">
                     
                         
@@ -395,7 +502,7 @@ into the {body} of the default.hbs template -->
                         
                     
 
-                    <h2 class="post-card-title">Thread - OS(2)</h2>
+                    <h2 class="post-card-title">Process - OS(1)</h2>
                 </header>
                 <section class="post-card-excerpt">
                     
@@ -441,18 +548,18 @@ into the {body} of the default.hbs template -->
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">디자인패턴(1)-싱글톤 패턴</div>
+    <div class="floating-header-title">Thread - OS(2)</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%281%29-%EC%8B%B1%EA%B8%80%ED%86%A4+%ED%8C%A8%ED%84%B4&amp;url=https://changjunpyo.github.iosingleton"
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Thread+-+OS%282%29&amp;url=https://changjunpyo.github.ioos-thread"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://changjunpyo.github.iosingleton"
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://changjunpyo.github.ioos-thread"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
 
