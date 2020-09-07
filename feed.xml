@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-05-22T16:13:14+09:00</updated><id>/</id><title type="html">changjunpyo</title><subtitle>배운 것들을 정리하는 곳</subtitle><entry><title type="html">디자인패턴(1)-싱글톤 패턴</title><link href="/singleton" rel="alternate" type="text/html" title="디자인패턴(1)-싱글톤 패턴" /><published>2020-05-17T00:00:00+09:00</published><updated>2020-05-17T00:00:00+09:00</updated><id>/singleton</id><content type="html" xml:base="/singleton">&lt;h2 id=&quot;단일체singleton-패턴&quot;&gt;단일체(Singleton) 패턴&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-07T15:31:27+09:00</updated><id>http://localhost:4000/</id><title type="html">changjunpyo</title><subtitle>배운 것들을 정리하는 곳</subtitle><entry><title type="html">디자인패턴(2)-옵저버 패턴</title><link href="http://localhost:4000/obserber" rel="alternate" type="text/html" title="디자인패턴(2)-옵저버 패턴" /><published>2020-05-24T00:00:00+09:00</published><updated>2020-05-24T00:00:00+09:00</updated><id>http://localhost:4000/obserber</id><content type="html" xml:base="http://localhost:4000/obserber">&lt;h2 id=&quot;옵저버observer-패턴&quot;&gt;옵저버(Observer) 패턴&lt;/h2&gt;
+
+&lt;p&gt;옵저버 패턴은 디자인 패턴 중 행동 패턴에 속하며, 행동 패턴이란 어떤 처리의 책임을 어느 객체에 할당하는 것이 좋은지, 알고리즘을 어느 객체에 정의 하는 것이 좋은 지 등을 다루는 패턴들이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;목적&quot;&gt;목적&lt;/h4&gt;
+
+&lt;p&gt;객체 사이에 일 대 다의 의존 관계를 정의해 두어, 어떤 객체의 상태가 변할 때 그 객체에 의존성을 가진 다른 객체들이 그변화를 통지받고 자동으로 갱신될 수 있게 만든다라고 책에 정의 되어있다.
+간단히 말하자면 1개의 객체에 다른 객체들이 구독(subcribe)를 하고 그 객체에 변화가 생기게 되면 다른 그 상태를 listen하고 있는 다른 여러 객체들을 갱신 해주는 것이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;필요성&quot;&gt;필요성&lt;/h4&gt;
+
+&lt;p&gt;어떤 하나의 시스템을 서로 연동되는 여러 개의 클래스로 만들게 되는 경우 발생하게 되는 문제 중 하나는 서로간의 일관성(consistency)을 맞추어 주어야한다는 것이다. 그렇지만 이렇게 일관성을 유지하기 위해서 객체간의 결합을 높이자니 SRP(단일 책임 원칙)를 해치게 되는 문제가 생긴다. 그렇게 된다면 각각의 클래스의 재사용성이 떨어지기 때문이다.
+우리는 상태가 변화하는 객체를 주체(subject)라고 부르고 주체의 상태를 감시하는 객체를 감시자(Observer)라고 부른다.&lt;/p&gt;
+
+&lt;p&gt;이것을 사용하는 예로는 우리는 Redux에서 Store(주체)와 그것들의 상태를 연결한 각각의 컴포넌트들(감시자)라고 생각할 수 있다. store에 있는 특정 state가 변화하게 된다면 그 상태에 대한 정보를 구독하고 있는 컴포넌트의 경우는 그 값이 변화하여서 새로운 값을 받게 된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;언제-써야하나&quot;&gt;언제 써야하나?&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;어떤 추상 개념이 두 가지 양상을 갖고 하나가 다른 하나에 종속적일 때. 각 양상을 별도의 객체로 캡슐화하여 이들 각각을 재사용 할 수 있을 때&lt;/li&gt;
+  &lt;li&gt;한 객체에 가해진 변경으로 다른 객체를 변경해야 하고, 프로그래머들은 얼마나 많은 객체들이 변경되어야 하는지 몰라도 될 때&lt;/li&gt;
+  &lt;li&gt;어떤 객체가 다른 객체에 자신의 변화를 통보할 수 있는데, 그 변화에 관심 있어 하는 객체들이 누구인지에 대한 가정 없이도 그러한 통보가 될 때&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;reference&quot;&gt;reference&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeong-pro.tistory.com/86&quot;&gt;https://jeong-pro.tistory.com/86&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;‘GOF의 디자인 패턴’&lt;/p&gt;</content><author><name>Junpyo</name></author><category term="design pattern" /><summary type="html">옵저버(Observer) 패턴</summary></entry><entry><title type="html">디자인패턴(1)-싱글톤 패턴</title><link href="http://localhost:4000/singleton" rel="alternate" type="text/html" title="디자인패턴(1)-싱글톤 패턴" /><published>2020-05-17T00:00:00+09:00</published><updated>2020-05-17T00:00:00+09:00</updated><id>http://localhost:4000/singleton</id><content type="html" xml:base="http://localhost:4000/singleton">&lt;h2 id=&quot;단일체singleton-패턴&quot;&gt;단일체(Singleton) 패턴&lt;/h2&gt;
 &lt;p&gt;디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 &lt;strong&gt;&lt;em&gt;싱글톤 패턴&lt;/em&gt;&lt;/strong&gt; 부터 소개한다.&lt;/p&gt;
 &lt;h4 id=&quot;목적&quot;&gt;목적&lt;/h4&gt;
 
@@ -100,7 +128,7 @@
 &lt;h3 id=&quot;reference&quot;&gt;reference&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://jeong-pro.tistory.com/86&quot;&gt;https://jeong-pro.tistory.com/86&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;‘GOF의 디자인 패턴’&lt;/p&gt;</content><author><name>Junpyo</name></author><category term="design pattern" /><summary type="html">단일체(Singleton) 패턴 디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 싱글톤 패턴 부터 소개한다. 목적</summary></entry><entry><title type="html">Thread - OS(2)</title><link href="/os-thread" rel="alternate" type="text/html" title="Thread - OS(2)" /><published>2020-04-17T00:00:00+09:00</published><updated>2020-04-17T00:00:00+09:00</updated><id>/os-thread</id><content type="html" xml:base="/os-thread">&lt;h2 id=&quot;process-모델의-한계점&quot;&gt;Process 모델의 한계점&lt;/h2&gt;
+&lt;p&gt;‘GOF의 디자인 패턴’&lt;/p&gt;</content><author><name>Junpyo</name></author><category term="design pattern" /><summary type="html">단일체(Singleton) 패턴 디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 싱글톤 패턴 부터 소개한다. 목적</summary></entry><entry><title type="html">Thread - OS(2)</title><link href="http://localhost:4000/os-thread" rel="alternate" type="text/html" title="Thread - OS(2)" /><published>2020-04-17T00:00:00+09:00</published><updated>2020-04-17T00:00:00+09:00</updated><id>http://localhost:4000/os-thread</id><content type="html" xml:base="http://localhost:4000/os-thread">&lt;h2 id=&quot;process-모델의-한계점&quot;&gt;Process 모델의 한계점&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Cooperation 프로세스의 관점&lt;/strong&gt;
@@ -211,7 +239,7 @@
       &lt;li&gt;one to one model &amp;amp; many to many model(user-level-thread 방식을 믹스한 것)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Junpyo</name></author><category term="operating system" /><category term="os" /><summary type="html">Process 모델의 한계점</summary></entry><entry><title type="html">Process - OS(1)</title><link href="/os-process" rel="alternate" type="text/html" title="Process - OS(1)" /><published>2020-04-17T00:00:00+09:00</published><updated>2020-04-17T00:00:00+09:00</updated><id>/os-process</id><content type="html" xml:base="/os-process">&lt;h1 id=&quot;process&quot;&gt;Process&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>Junpyo</name></author><category term="operating system" /><category term="os" /><summary type="html">Process 모델의 한계점</summary></entry><entry><title type="html">Process - OS(1)</title><link href="http://localhost:4000/os-process" rel="alternate" type="text/html" title="Process - OS(1)" /><published>2020-04-17T00:00:00+09:00</published><updated>2020-04-17T00:00:00+09:00</updated><id>http://localhost:4000/os-process</id><content type="html" xml:base="http://localhost:4000/os-process">&lt;h1 id=&quot;process&quot;&gt;Process&lt;/h1&gt;
 
 &lt;p&gt;실행 중인 프로그램(an instance of a running program)&lt;/p&gt;
 
@@ -383,14 +411,14 @@ OS가 복잡 할수록 context 스위칭을 하는 동안 하는 일이 많아�
       &lt;li&gt;socket(internet IPC , TCP/UDP)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Junpyo</name></author><category term="operating system" /><category term="os" /><summary type="html">Process</summary></entry><entry><title type="html">binary(upper_bound, under_bound)의 구현</title><link href="/binary-search" rel="alternate" type="text/html" title="binary(upper_bound, under_bound)의 구현" /><published>2020-03-04T00:00:00+09:00</published><updated>2020-03-04T00:00:00+09:00</updated><id>/binary-search</id><content type="html" xml:base="/binary-search">&lt;h2 id=&quot;이분탐색&quot;&gt;이분탐색&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Junpyo</name></author><category term="operating system" /><category term="os" /><summary type="html">Process</summary></entry><entry><title type="html">binary(upper_bound, lower_bound)의 구현</title><link href="http://localhost:4000/binary-search" rel="alternate" type="text/html" title="binary(upper_bound, lower_bound)의 구현" /><published>2020-03-04T00:00:00+09:00</published><updated>2020-03-04T00:00:00+09:00</updated><id>http://localhost:4000/binary-search</id><content type="html" xml:base="http://localhost:4000/binary-search">&lt;h2 id=&quot;이분탐색&quot;&gt;이분탐색&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;binary search&lt;/strong&gt;는 탐색 방법중의 기초라고 할 수있을 정도로 쉽게 생각 할 수있고 거의 왠만한 개발하는 사람이라면 알고 있을 거라 생각하는데, 구현하려고 하면 조금 까다로운 부분이 있다.
 이걸 글로 쓰게된 이유는 가끔씩 문제를 풀다보면 이분탐색 문제가 나오는데,
-만족하는 특정 값 중에서 최소를 구하시오(&lt;strong&gt;under_bound&lt;/strong&gt;), 최대를 구하시오(&lt;strong&gt;upper_bound&lt;/strong&gt;)같은 형식으로 구해야하는 경우가 존재하는데 매번 풀때마다 헷갈린다.
-따라서 정리를 해놓으려고 글을 작성한다.&lt;/p&gt;
+만족하는 특정 값 중에서 최소를 구하시오(&lt;strong&gt;lower_bound&lt;/strong&gt;), 최대를 구하시오(&lt;strong&gt;upper_bound&lt;/strong&gt;)같은 형식으로 구해야하는 경우가 존재하는데 매번 풀때마다 헷갈린다.
+따라서 정리를 해놓으려고 글을 작성한다.(200524 - 오타 수정)&lt;/p&gt;
 
-&lt;p&gt;기본적인 이분 탐색의 특징 (정렬되있어야하고, O(logN),,)은 생략하겠다…&lt;/p&gt;
+&lt;p&gt;기본적인 이분 탐색의 특징 (정렬되있어야하고, O(NogN)과 같은 특징)은 생략하겠다…&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;둘 다 key값이 존재하지 않는 경우 key값보다 큰 값 중 가장 작은 값을 반환한다.
@@ -411,7 +439,7 @@ OS가 복잡 할수록 context 스위칭을 하는 동안 하는 일이 많아�
        	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAX_LENGTH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// index
 &lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// l가 r랑 같아질때 까지
 &lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
                 &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
@@ -424,10 +452,10 @@ OS가 복잡 할수록 context 스위칭을 하는 동안 하는 일이 많아�
 &lt;p&gt;여기서 l을 반환하게 되는데 , 마지막에 l==r이 되면서 나오게 되는데,
 index l에 있는 값은 key보다 첫번째로 큰 값을 나타낸다.&lt;/p&gt;
 
-&lt;h2 id=&quot;under_bound&quot;&gt;&lt;strong&gt;under_bound&lt;/strong&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;lower_bound&quot;&gt;&lt;strong&gt;lower_bound&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;under_bound라는 것은 만족하는 &lt;strong&gt;key 값&lt;/strong&gt; 중 가장 작은것을 반환(가장 작은 index)&lt;/li&gt;
+  &lt;li&gt;lower_bound라는 것은 만족하는 &lt;strong&gt;key 값&lt;/strong&gt; 중 가장 작은것을 반환(가장 작은 index)&lt;/li&gt;
   &lt;li&gt;key 값이 존재 하지 않으면 key보다 큰 가장 작은 정수를 반환&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -438,7 +466,7 @@ index l에 있는 값은 key보다 첫번째로 큰 값을 나타낸다.&lt;/p&g
        	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAX_LENGTH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// index
 &lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// l가 r랑 같아질때 까지
 &lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &amp;lt;= 여기 부분의 =만 바뀜
 &lt;/span&gt;                &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
