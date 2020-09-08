@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>jenkins(1)-docker를 이용한 젠킨스 설치</title>
+        
+          <description>&lt;h2 id=&quot;jenkins1-도커를-이용하여-설치하기&quot;&gt;jenkins(1) 도커를 이용하여 설치하기&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Tue, 08 Sep 2020 00:00:00 +0900</pubDate>
+        <link>
+        http://localhost:4000/jenkins(1)</link>
+        <guid isPermaLink="true">http://localhost:4000/jenkins(1)</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>디자인패턴(2)-옵저버 패턴</title>
         
           <description>&lt;h2 id=&quot;옵저버observer-패턴&quot;&gt;옵저버(Observer) 패턴&lt;/h2&gt;
