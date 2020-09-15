@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="http://localhost:4000/author/changjunpyo/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2020-09-08T21:54:24+09:00</updated>
+  <updated>2020-09-15T22:55:09+09:00</updated>
   <id>http://localhost:4000/author/changjunpyo/feed.xml</id>
 
   
@@ -37,23 +37,16 @@
       <published>2020-09-08T00:00:00+09:00</published>
       <updated>2020-09-08T00:00:00+09:00</updated>
       <id>http://localhost:4000/jenkins(1)</id>
-      <content type="html" xml:base="http://localhost:4000/jenkins(1)">&lt;h2 id=&quot;jenkins1-도커를-이용하여-설치하기&quot;&gt;jenkins(1) 도커를 이용하여 설치하기&lt;/h2&gt;
-
-&lt;p&gt;###젠킨스란?&lt;/p&gt;
-
+      <content type="html" xml:base="http://localhost:4000/jenkins(1)">&lt;h2 id=&quot;jenkins1---&quot;&gt;jenkins(1) 도커를 이용하여 설치하기&lt;/h2&gt;
+&lt;h3 id=&quot;section&quot;&gt;젠킨스란?&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;자바 어플리케이션&lt;/li&gt;
-  &lt;li&gt;CI &amp;amp; CD(continuous intergration &amp;amp; continuous delivery)에 사용됨&lt;/li&gt;
+&lt;li&gt;자바 어플리케이션&lt;/li&gt;
+&lt;li&gt;CI &amp;amp; CD(continuous intergration &amp;amp; continuous delivery)에 사용됨&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;&lt;img src=&quot;assets/images/jenkins(1)-2.png&quot; alt=&quot;assets/images/jenkins(1)-2.png&quot; /&gt;&lt;/p&gt;
-
 &lt;p&gt;docker를 이용한 자세한 다운로드는 아래 사이트를 확인하자&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&quot;https://github.com/jenkinsci/docker/blob/master/README.md&quot;&gt;https://github.com/jenkinsci/docker/blob/master/README.md&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;도커-다운로드&quot;&gt;도커 다운로드&lt;/h2&gt;
-
+&lt;h2 id=&quot;section-1&quot;&gt;도커 다운로드&lt;/h2&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#기본 설정&lt;/span&gt;
 docker run &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 8080:8080 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 50000:50000 jenkins/jenkins:lts
 
@@ -66,27 +59,18 @@ docker run &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 8080:8080 &lt;span c
 docker run &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; jenkins_home:/var/jenkins_home &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 8080:8080 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 50000:50000 jenkins/jenkins:lts
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;p&gt;위를 쳐서 들어가게 되면 아래와 같이 나오는 데&lt;/p&gt;
-
 &lt;p&gt;&lt;img src=&quot;assets/images/jenkins(1)-1.png&quot; alt=&quot;assets/images/jenkins(1)-1.png&quot; /&gt;&lt;/p&gt;
-
 &lt;p&gt;비밀번호를 넣으려면 백그라운드에서 도커를 실행 중이면 로그를 찾아서 확인해도 되고 직접 도커에서 저 폴더를 확인해보면 비밀 번호를 찾을 수 있다.&lt;/p&gt;
-
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker logs &lt;span class=&quot;nv&quot;&gt;$CONTAINER_ID&lt;/span&gt;
 or
 docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$CONTAINER_ID&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /var/jenkins_home/secrets/initialAdminPassword
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;p&gt;그런 다음 &lt;a href=&quot;http://localhost:8080&quot;&gt;localhost:8080&lt;/a&gt; 으로 접속한 다음 플러그인 설정을 마치게 되면 다음과 같은 화면이 나오게 된다.&lt;/p&gt;
-
 &lt;p&gt;&lt;img src=&quot;assets/images/jenkins(1)-4.png&quot; alt=&quot;assets/images/jenkins(1)-4.png&quot; /&gt;&lt;/p&gt;
-
 &lt;p&gt;어드민 유저 설정을 마치게 되면 다음과 같은 화면이 나타나게 된다!&lt;/p&gt;
-
 &lt;p&gt;&lt;img src=&quot;assets/images/jenkins(1)-3.png&quot; alt=&quot;assets/images/jenkins(1)-3.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;다음에 계속…&lt;/p&gt;</content>
+&lt;p&gt;다음에 계속...&lt;/p&gt;</content>
 
       
       
@@ -124,35 +108,24 @@ docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;n
       <published>2020-05-24T00:00:00+09:00</published>
       <updated>2020-05-24T00:00:00+09:00</updated>
       <id>http://localhost:4000/obserber</id>
-      <content type="html" xml:base="http://localhost:4000/obserber">&lt;h2 id=&quot;옵저버observer-패턴&quot;&gt;옵저버(Observer) 패턴&lt;/h2&gt;
-
+      <content type="html" xml:base="http://localhost:4000/obserber">&lt;h2 id=&quot;observer-&quot;&gt;옵저버(Observer) 패턴&lt;/h2&gt;
 &lt;p&gt;옵저버 패턴은 디자인 패턴 중 행동 패턴에 속하며, 행동 패턴이란 어떤 처리의 책임을 어느 객체에 할당하는 것이 좋은지, 알고리즘을 어느 객체에 정의 하는 것이 좋은 지 등을 다루는 패턴들이다.&lt;/p&gt;
-
-&lt;h4 id=&quot;목적&quot;&gt;목적&lt;/h4&gt;
-
+&lt;h4 id=&quot;section&quot;&gt;목적&lt;/h4&gt;
 &lt;p&gt;객체 사이에 일 대 다의 의존 관계를 정의해 두어, 어떤 객체의 상태가 변할 때 그 객체에 의존성을 가진 다른 객체들이 그변화를 통지받고 자동으로 갱신될 수 있게 만든다라고 책에 정의 되어있다.
 간단히 말하자면 1개의 객체에 다른 객체들이 구독(subcribe)를 하고 그 객체에 변화가 생기게 되면 다른 그 상태를 listen하고 있는 다른 여러 객체들을 갱신 해주는 것이다.&lt;/p&gt;
-
-&lt;h4 id=&quot;필요성&quot;&gt;필요성&lt;/h4&gt;
-
+&lt;h4 id=&quot;section-1&quot;&gt;필요성&lt;/h4&gt;
 &lt;p&gt;어떤 하나의 시스템을 서로 연동되는 여러 개의 클래스로 만들게 되는 경우 발생하게 되는 문제 중 하나는 서로간의 일관성(consistency)을 맞추어 주어야한다는 것이다. 그렇지만 이렇게 일관성을 유지하기 위해서 객체간의 결합을 높이자니 SRP(단일 책임 원칙)를 해치게 되는 문제가 생긴다. 그렇게 된다면 각각의 클래스의 재사용성이 떨어지기 때문이다.
 우리는 상태가 변화하는 객체를 주체(subject)라고 부르고 주체의 상태를 감시하는 객체를 감시자(Observer)라고 부른다.&lt;/p&gt;
-
 &lt;p&gt;이것을 사용하는 예로는 우리는 Redux에서 Store(주체)와 그것들의 상태를 연결한 각각의 컴포넌트들(감시자)라고 생각할 수 있다. store에 있는 특정 state가 변화하게 된다면 그 상태에 대한 정보를 구독하고 있는 컴포넌트의 경우는 그 값이 변화하여서 새로운 값을 받게 된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;언제-써야하나&quot;&gt;언제 써야하나?&lt;/h4&gt;
-
+&lt;h4 id=&quot;section-2&quot;&gt;언제 써야하나?&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;어떤 추상 개념이 두 가지 양상을 갖고 하나가 다른 하나에 종속적일 때. 각 양상을 별도의 객체로 캡슐화하여 이들 각각을 재사용 할 수 있을 때&lt;/li&gt;
-  &lt;li&gt;한 객체에 가해진 변경으로 다른 객체를 변경해야 하고, 프로그래머들은 얼마나 많은 객체들이 변경되어야 하는지 몰라도 될 때&lt;/li&gt;
-  &lt;li&gt;어떤 객체가 다른 객체에 자신의 변화를 통보할 수 있는데, 그 변화에 관심 있어 하는 객체들이 누구인지에 대한 가정 없이도 그러한 통보가 될 때&lt;/li&gt;
+&lt;li&gt;어떤 추상 개념이 두 가지 양상을 갖고 하나가 다른 하나에 종속적일 때. 각 양상을 별도의 객체로 캡슐화하여 이들 각각을 재사용 할 수 있을 때&lt;/li&gt;
+&lt;li&gt;한 객체에 가해진 변경으로 다른 객체를 변경해야 하고, 프로그래머들은 얼마나 많은 객체들이 변경되어야 하는지 몰라도 될 때&lt;/li&gt;
+&lt;li&gt;어떤 객체가 다른 객체에 자신의 변화를 통보할 수 있는데, 그 변화에 관심 있어 하는 객체들이 누구인지에 대한 가정 없이도 그러한 통보가 될 때&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h3 id=&quot;reference&quot;&gt;reference&lt;/h3&gt;
-
 &lt;p&gt;&lt;a href=&quot;https://jeong-pro.tistory.com/86&quot;&gt;https://jeong-pro.tistory.com/86&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;‘GOF의 디자인 패턴’&lt;/p&gt;</content>
+&lt;p&gt;'GOF의 디자인 패턴'&lt;/p&gt;</content>
 
       
       
@@ -186,35 +159,23 @@ docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;n
       <published>2020-05-17T00:00:00+09:00</published>
       <updated>2020-05-17T00:00:00+09:00</updated>
       <id>http://localhost:4000/singleton</id>
-      <content type="html" xml:base="http://localhost:4000/singleton">&lt;h2 id=&quot;단일체singleton-패턴&quot;&gt;단일체(Singleton) 패턴&lt;/h2&gt;
+      <content type="html" xml:base="http://localhost:4000/singleton">&lt;h2 id=&quot;singleton-&quot;&gt;단일체(Singleton) 패턴&lt;/h2&gt;
 &lt;p&gt;디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 &lt;strong&gt;&lt;em&gt;싱글톤 패턴&lt;/em&gt;&lt;/strong&gt; 부터 소개한다.&lt;/p&gt;
-&lt;h4 id=&quot;목적&quot;&gt;목적&lt;/h4&gt;
-
+&lt;h4 id=&quot;section&quot;&gt;목적&lt;/h4&gt;
 &lt;p&gt;오직 &lt;strong&gt;&lt;em&gt;한 개의 클래스 인스턴스&lt;/em&gt;&lt;/strong&gt; 만을 갖도록 보장하고, 이에 대한 전역적인 접근점을 제공함&lt;/p&gt;
-
-&lt;h4 id=&quot;필요성&quot;&gt;필요성&lt;/h4&gt;
-
+&lt;h4 id=&quot;section-1&quot;&gt;필요성&lt;/h4&gt;
 &lt;p&gt;특정한 클래스의 경우는 정확히 하나의 인스턴스를 갖도록 하는 것이 좋다. 예를 들면 파일 시스템이라던지, 윈도우 관리자라 던지 하는 것들은 하나만 존재해야 한다. DBCP(DataBase Connection pool)과 같이 공통된 객체를 여러개 생성해서 사용해야 하는 경우 단일체 패턴을 이용하게 된다면 다른 인스턴스들과 데이터를 공유하기 쉽다.&lt;/p&gt;
-
-&lt;p&gt;전역 변수를 통하여서 이객체만 접근하도록 하는 방법을 사용한다면 여러개의 인스턴스를 만들 필요가 없다. 하지만 이것보다 더 좋은 방법은 클래스가 자신이 자기의 유일한 인스턴스로 접근하는 방법을 자체적으로 관리하도록 하는 것이다. 이 클래스는 다른 인스턴스가 생성되지 않도록 하며(새로운 객체 생성 요청을 가로채서 원래 인스턴스를 주는 방식으로), 클래스 자신이 그 인스턴스에 대한 접근 방법을 제공한다. 이것을 가리켜 &lt;strong&gt;&lt;em&gt;단일체(Singleton) 패턴&lt;/em&gt;&lt;/strong&gt;이라고 한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;언제-써야하나&quot;&gt;언제 써야하나?&lt;/h4&gt;
-
+&lt;p&gt;전역 변수를 통하여서 이객체만 접근하도록 하는 방법을 사용한다면 여러개의 인스턴스를 만들 필요가 없다. 하지만 이것보다 더 좋은 방법은 클래스가 자신이 자기의 유일한 인스턴스로 접근하는 방법을 자체적으로 관리하도록 하는 것이다. 이 클래스는 다른 인스턴스가 생성되지 않도록 하며(새로운 객체 생성 요청을 가로채서 원래 인스턴스를 주는 방식으로), 클래스 자신이 그 인스턴스에 대한 접근 방법을 제공한다. 이것을 가리켜 **&lt;em&gt;단일체(Singleton) 패턴&lt;/em&gt;**이라고 한다.&lt;/p&gt;
+&lt;h4 id=&quot;section-2&quot;&gt;언제 써야하나?&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;인스턴스가 하나임을 보장하고, 그것을 사용하는 방법을 하나로 만들어야 할 때&lt;/li&gt;
-  &lt;li&gt;유일한 인스턴스가 서브 클래스로 확장되어야 하며, 소스의 수정없이 확장된 서브클래스를 이용하고자 할 때&lt;/li&gt;
+&lt;li&gt;인스턴스가 하나임을 보장하고, 그것을 사용하는 방법을 하나로 만들어야 할 때&lt;/li&gt;
+&lt;li&gt;유일한 인스턴스가 서브 클래스로 확장되어야 하며, 소스의 수정없이 확장된 서브클래스를 이용하고자 할 때&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h4 id=&quot;문제점&quot;&gt;문제점&lt;/h4&gt;
-
+&lt;h4 id=&quot;section-3&quot;&gt;문제점&lt;/h4&gt;
 &lt;p&gt;일단 싱글톤의 경우는 기본적으로 전역 변수와 같이 전역적인 특성을 가지고 있게 된다. 따라서 다른 객체와 공통으로 사용하는 경우와 같은 여러 케이스가 아닌 경우는 문제가 생길 수 있다. 싱글톤이 만약 다양한 역할을 가지고 복잡한 일을 하게 되는 경우 다른 객체와의 결합도가 높아져 OOP의 원칙중 OCP(개방 폐쇄 원칙)을 위반하는 것이 된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;구현&quot;&gt;구현&lt;/h4&gt;
-
+&lt;h4 id=&quot;section-4&quot;&gt;구현&lt;/h4&gt;
 &lt;p&gt;java의 경우는 여러가지의 구현 방식이 존재 하며 그것마다 각각의 특징을 가지고 있다.&lt;/p&gt;
-
 &lt;h5 id=&quot;static&quot;&gt;Static&lt;/h5&gt;
-
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;// static instance&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -231,64 +192,56 @@ docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;n
   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;p&gt;위와 같이 사용하게 되면 클래스가 사용되는 시점이 아닌 클래스를 로딩하는 시점에 생성을 하게 된다.&lt;/p&gt;
-
 &lt;h5 id=&quot;lazy-init&quot;&gt;Lazy init&lt;/h5&gt;
-
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;
 
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;p&gt;위의 방법을 개선하여 클래스가 사용되는 시점에 인스턴스를 생성하게 된다. 하지만 멀티스레딩을 사용하는 경우 취약한 환경이 된다.&lt;/p&gt;
-
 &lt;h5 id=&quot;lazy-init--thread-safe&quot;&gt;Lazy init + Thread safe&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;```java
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    public class Singleton{
 
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      private static Singleton instance;
 
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;
+      private Singleton(){}
 
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+      public static synchronized Singleton getInstance(){
+        if (instance == null) {instance = new Singleton();}
+        return instance;
+      }
+    }
 
+```
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;멀티 스레딩 환경에서도 쓰레드 세이프한 방법을 통해 구현 하였다. 하지만 synchronized의 경우는 성능을 많이 저하시키게 된다.&lt;/p&gt;
-
 &lt;h5 id=&quot;holder&quot;&gt;Holder&lt;/h5&gt;
-
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;
 
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SingletonHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SingletonHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SingletonHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SingletonHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;p&gt;JVM의 클래스 로더 메커니즘과 클래스의 로드 시점을 이용하여 내부 클래스를 통해 생성 시킴으로써 쓰레드 간의 동기화 문제를 해결한다. holder안에 선언된 instance는 클래스 로드시 한번만 선언되어 생성 될 것이고 final을 이용하여 변경되지 않게 해준다.&lt;/p&gt;
-
 &lt;h3 id=&quot;reference&quot;&gt;reference&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://jeong-pro.tistory.com/86&quot;&gt;https://jeong-pro.tistory.com/86&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;‘GOF의 디자인 패턴’&lt;/p&gt;</content>
+&lt;p&gt;'GOF의 디자인 패턴'&lt;/p&gt;</content>
 
       
       
@@ -309,7 +262,7 @@ docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;n
       
 
       
-        <summary type="html">단일체(Singleton) 패턴 디자인 패턴에 대해서 차례대로 공부해보려고 한다. 일단 생성 패턴, 구조 패턴 , 행동 패턴으로 나눠서 익힐 수도 있지만 실제로 많이 접해보고 우선적으로 익혀야 하는 것들을 골라서 먼저 진행하려고 한다. 그중 많이 들어봤을 싱글톤 패턴 부터 소개한다. 목적</summary>
+        <summary type="html">단일체(Singleton) 패턴</summary>
       
 
       
@@ -323,177 +276,137 @@ docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;n
       <updated>2020-04-17T00:00:00+09:00</updated>
       <id>http://localhost:4000/os-process</id>
       <content type="html" xml:base="http://localhost:4000/os-process">&lt;h1 id=&quot;process&quot;&gt;Process&lt;/h1&gt;
-
 &lt;p&gt;실행 중인 프로그램(an instance of a running program)&lt;/p&gt;
-
-&lt;h2 id=&quot;process의-구성&quot;&gt;Process의 구성&lt;/h2&gt;
-
+&lt;h2 id=&quot;process-&quot;&gt;Process의 구성&lt;/h2&gt;
 &lt;h3 id=&quot;images&quot;&gt;Images&lt;/h3&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;Code: 명령 코드(instrunction code)&lt;/li&gt;
-  &lt;li&gt;Data: 다양한 변수(전역)&lt;/li&gt;
-  &lt;li&gt;Stack: 함수 call을 위한 states들&lt;/li&gt;
-  &lt;li&gt;Heap: 동적 메모리&lt;/li&gt;
+&lt;li&gt;Code: 명령 코드(instrunction code)&lt;/li&gt;
+&lt;li&gt;Data: 다양한 변수(전역)&lt;/li&gt;
+&lt;li&gt;Stack: 함수 call을 위한 states들&lt;/li&gt;
+&lt;li&gt;Heap: 동적 메모리&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h3 id=&quot;process-context&quot;&gt;Process context&lt;/h3&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;Program context - 데이터 레지스터(data register) - 프로그램 카운터(PC), 스택 포인터(SP)&lt;/li&gt;
-  &lt;li&gt;Kernel context - pid,gid,sid,env… - VM structure(페이지 테이블) - open files, signal handlers…&lt;/li&gt;
+&lt;li&gt;Program context - 데이터 레지스터(data register) - 프로그램 카운터(PC), 스택 포인터(SP)&lt;/li&gt;
+&lt;li&gt;Kernel context - pid,gid,sid,env... - VM structure(페이지 테이블) - open files, signal handlers...&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h2 id=&quot;process-control-blockpcb-aka-pdprocess-descriptor&quot;&gt;Process control Block(PCB) a.k.a PD(Process Descriptor)&lt;/h2&gt;
-
 &lt;p&gt;프로세스에 관련 된 정보를 가지고 있는 자료 구조(structure)&lt;/p&gt;
-
-&lt;h3 id=&quot;pcb의-구성&quot;&gt;PCB의 구성&lt;/h3&gt;
-
+&lt;h3 id=&quot;pcb-&quot;&gt;PCB의 구성&lt;/h3&gt;
 &lt;h4 id=&quot;image&quot;&gt;Image&lt;/h4&gt;
-
 &lt;h4 id=&quot;process-context-1&quot;&gt;Process context&lt;/h4&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;program context&lt;/li&gt;
-  &lt;li&gt;kernel context&lt;/li&gt;
+&lt;li&gt;program context&lt;/li&gt;
+&lt;li&gt;kernel context&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;리눅스에서는 task_struct라고 구현 되어있음&lt;/p&gt;
-
 &lt;h2 id=&quot;process-state-5-state-model&quot;&gt;Process State: 5-State model&lt;/h2&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;new: 프로세스가 생성됨&lt;/li&gt;
-  &lt;li&gt;ready: ready queue에서 프로세서에 의하여 스케쥴 되기 기다리는 상태&lt;/li&gt;
-  &lt;li&gt;running: 프로세스가 instruction 실행 중&lt;/li&gt;
-  &lt;li&gt;blocked(waited): 프로세스가 특정 이벤트(e.g 입출력 완료, signal)를 기다리는 상태&lt;/li&gt;
-  &lt;li&gt;exit(terminated): 프로세스가 종료된 상태
+&lt;li&gt;new: 프로세스가 생성됨&lt;/li&gt;
+&lt;li&gt;ready: ready queue에서 프로세서에 의하여 스케쥴 되기 기다리는 상태&lt;/li&gt;
+&lt;li&gt;running: 프로세스가 instruction 실행 중&lt;/li&gt;
+&lt;li&gt;blocked(waited): 프로세스가 특정 이벤트(e.g 입출력 완료, signal)를 기다리는 상태&lt;/li&gt;
+&lt;li&gt;exit(terminated): 프로세스가 종료된 상태
 &lt;img src=&quot;https://images.velog.io/images/changjunpyo/post/b5417760-aed7-4e17-a105-788587b64239/image.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h2 id=&quot;process-switching&quot;&gt;Process Switching&lt;/h2&gt;
-
 &lt;h3 id=&quot;dual-mode-operation&quot;&gt;Dual mode operation&lt;/h3&gt;
-
 &lt;p&gt;대부분의 OS는 특정한 H/W를 이용해서 user가 직접적으로 low-level의 H/W 와 교류하거나임의의 메모리 주소에 접근하는 것을 막는다.&lt;/p&gt;
-
 &lt;p&gt;2가지의 CPU의 모드를 가진다.&lt;/p&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;유저 모드(User mode)
-    &lt;ul&gt;
-      &lt;li&gt;권한이 적은 모드&lt;/li&gt;
-      &lt;li&gt;유저의 프로그램은 보통 이 상태로 실행됨&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;커널 모드(Kernel mode)
-    &lt;ul&gt;
-      &lt;li&gt;권한이 높은 모드&lt;/li&gt;
-      &lt;li&gt;그 프로세스의 명령문 ,레지스터, 메모리에 대한 권한을 가짐&lt;/li&gt;
-      &lt;li&gt;OS의 핵심&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+&lt;li&gt;유저 모드(User mode)
+&lt;ul&gt;
+&lt;li&gt;권한이 적은 모드&lt;/li&gt;
+&lt;li&gt;유저의 프로그램은 보통 이 상태로 실행됨&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&quot;process-switching-1&quot;&gt;Process switching&lt;/h3&gt;
-
-&lt;p&gt;** 실행 중인 프로세스 인터럽트 되거나 프로세서(processor)에 의해 강제로 다른 프로세스가 실행(running state)되게 할 때, 실행 중이던 프로세스가 다른 프로세스에게 넘겨주는 과정을 말함**&lt;/p&gt;
-
+&lt;/li&gt;
+&lt;li&gt;커널 모드(Kernel mode)
 &lt;ul&gt;
-  &lt;li&gt;언제 process swiching이 일어남?
+&lt;li&gt;권한이 높은 모드&lt;/li&gt;
+&lt;li&gt;그 프로세스의 명령문 ,레지스터, 메모리에 대한 권한을 가짐&lt;/li&gt;
+&lt;li&gt;OS의 핵심&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;process-switching-1&quot;&gt;Process switching&lt;/h3&gt;
+&lt;p&gt;** 실행 중인 프로세스 인터럽트 되거나 프로세서(processor)에 의해 강제로 다른 프로세스가 실행(running state)되게 할 때, 실행 중이던 프로세스가 다른 프로세스에게 넘겨주는 과정을 말함**&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;언제 process swiching이 일어남?
 아래 &lt;strong&gt;3가지 경우에 일어날 수&lt;/strong&gt;도 있음( 안 일어난다는건? -&amp;gt; 모드 스위칭만 일어난 경우!)
-    &lt;ul&gt;
-      &lt;li&gt;외부 인터럽트(External Interrupt): 타이머, I/O 인터럽트&lt;/li&gt;
-      &lt;li&gt;내부 트랩(Exception): 페이지 폴트, 잘못된 operation(divide by 0)&lt;/li&gt;
-      &lt;li&gt;시스템 콜(syscall): I/O 명령, fork&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;프로세스 스위칭(Process switching) VS 모드 스위칭(Mode Switching)
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;모드 스위칭&lt;/strong&gt;: 위 3가지(외부 인터럽트, 내부 트랩, 시스템콜) 경우 &lt;strong&gt;항상&lt;/strong&gt; 모드 스위칭이 일어남
+&lt;ul&gt;
+&lt;li&gt;외부 인터럽트(External Interrupt): 타이머, I/O 인터럽트&lt;/li&gt;
+&lt;li&gt;내부 트랩(Exception): 페이지 폴트, 잘못된 operation(divide by 0)&lt;/li&gt;
+&lt;li&gt;시스템 콜(syscall): I/O 명령, fork&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;프로세스 스위칭(Process switching) VS 모드 스위칭(Mode Switching)
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;모드 스위칭&lt;/strong&gt;: 위 3가지(외부 인터럽트, 내부 트랩, 시스템콜) 경우 &lt;strong&gt;항상&lt;/strong&gt; 모드 스위칭이 일어남
 과정
-        &lt;ul&gt;
-          &lt;li&gt;현재 프로세스의 상태(process context- reg, flags(PC,SP))를 저장&lt;/li&gt;
-          &lt;li&gt;PC를 특정한 곳으로 향하게함(커널 모드를 수행하기 위한 장소)&lt;/li&gt;
-          &lt;li&gt;커널 모드가 수행됨으로 특정 권한의 명령을 수행가능.
+&lt;ul&gt;
+&lt;li&gt;현재 프로세스의 상태(process context- reg, flags(PC,SP))를 저장&lt;/li&gt;
+&lt;li&gt;PC를 특정한 곳으로 향하게함(커널 모드를 수행하기 위한 장소)&lt;/li&gt;
+&lt;li&gt;커널 모드가 수행됨으로 특정 권한의 명령을 수행가능.
 모드 스위칭만 하고 프로세스 스위칭을 하지 않는 경우 process context의 저장과 간단한 복원만 일어남(overhead가 적음)&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;프로세스 스위칭&lt;/strong&gt;: 모드 스위치가 일어나고 경우에 따라 프로세스 스위칭이 일어남
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;프로세스 스위칭&lt;/strong&gt;: 모드 스위치가 일어나고 경우에 따라 프로세스 스위칭이 일어남
 과정
-        &lt;ul&gt;
-          &lt;li&gt;현재 프로세스의 context(process context)를 저장 - 어디에? 커널 스택에(PCB에서 context 저장)&lt;/li&gt;
-          &lt;li&gt;현재 프로세스의 상태를 바꾸어준다. running -&amp;gt; blocked/ready/exit&lt;/li&gt;
-          &lt;li&gt;PCB를 적절한 queue에 넣어줌&lt;/li&gt;
-          &lt;li&gt;다른 실행될 process를 스케쥴러를 통하여 선정&lt;/li&gt;
-          &lt;li&gt;선정된 process를 적절한 queue로 부터 가져옴&lt;/li&gt;
-          &lt;li&gt;실행될 프로세스의 상태를 running 으로 바꿈&lt;/li&gt;
-          &lt;li&gt;실행될 프로세스의 context(register, flags)를 복원 한다.
+&lt;ul&gt;
+&lt;li&gt;현재 프로세스의 context(process context)를 저장 - 어디에? 커널 스택에(PCB에서 context 저장)&lt;/li&gt;
+&lt;li&gt;현재 프로세스의 상태를 바꾸어준다. running -&amp;gt; blocked/ready/exit&lt;/li&gt;
+&lt;li&gt;PCB를 적절한 queue에 넣어줌&lt;/li&gt;
+&lt;li&gt;다른 실행될 process를 스케쥴러를 통하여 선정&lt;/li&gt;
+&lt;li&gt;선정된 process를 적절한 queue로 부터 가져옴&lt;/li&gt;
+&lt;li&gt;실행될 프로세스의 상태를 running 으로 바꿈&lt;/li&gt;
+&lt;li&gt;실행될 프로세스의 context(register, flags)를 복원 한다.
 프로세스 스위칭을 하는 동안 프로세서는 진행 상황(process들)이 없게 됨.
 OS가 복잡 할수록 context 스위칭을 하는 동안 하는 일이 많아짐.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
 &lt;/ul&gt;
-
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&quot;is-the-os-a-process&quot;&gt;is the OS a process?&lt;/h2&gt;
-
 &lt;p&gt;OS도 processor에 의하여 실행되어야함. 그렇다면 어떤 방식으로 ?&lt;/p&gt;
-
 &lt;p&gt;&lt;strong&gt;(A)&lt;/strong&gt; 프로세스가 아닌 커널
 &lt;strong&gt;(B)&lt;/strong&gt; 유저 프로세스 안에서 실행되는 커널
 &lt;strong&gt;(C)&lt;/strong&gt; 프로세스로 취급 되는 커널&lt;/p&gt;
-
 &lt;p&gt;(B)의 방식이 리눅스에서 이용되며 모드 스위치만 일어나는 경우 오버헤드가 적은 장점이 있다.&lt;/p&gt;
-
 &lt;h2 id=&quot;cooperating-processes&quot;&gt;Cooperating Processes&lt;/h2&gt;
-
 &lt;h3 id=&quot;communication&quot;&gt;Communication&lt;/h3&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;Data exchange&lt;/li&gt;
+&lt;li&gt;Data exchange&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h3 id=&quot;synchronization&quot;&gt;Synchronization&lt;/h3&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;Ordering between activities&lt;/li&gt;
+&lt;li&gt;Ordering between activities&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&quot;process-coordinationcommunication--synchronization&quot;&gt;Process coordination(Communication &amp;amp; Synchronization)&lt;/h3&gt;
-
+&lt;h3 id=&quot;process-coordinationcommunication-amp-synchronization&quot;&gt;Process coordination(Communication &amp;amp; Synchronization)&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Application programming (e.g shared memory)&lt;/li&gt;
-  &lt;li&gt;IPC(Inter-process communication)&lt;/li&gt;
+&lt;li&gt;Application programming (e.g shared memory)&lt;/li&gt;
+&lt;li&gt;IPC(Inter-process communication)&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h4 id=&quot;interprocess-communication&quot;&gt;Interprocess communication&lt;/h4&gt;
-
 &lt;p&gt;&lt;strong&gt;IPC&lt;/strong&gt;
 프로세스간의 communication과 synchronize를 위한 장치.&lt;/p&gt;
-
 &lt;p&gt;&lt;strong&gt;IPC Models&lt;/strong&gt;&lt;/p&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;하나의 컴퓨터에서 2개의 process간의 IPC&lt;/li&gt;
-  &lt;li&gt;다른 컴퓨터에서 2개의 process간의 IPC&lt;/li&gt;
-  &lt;li&gt;Client-Server model&lt;/li&gt;
+&lt;li&gt;하나의 컴퓨터에서 2개의 process간의 IPC&lt;/li&gt;
+&lt;li&gt;다른 컴퓨터에서 2개의 process간의 IPC&lt;/li&gt;
+&lt;li&gt;Client-Server model&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;&lt;strong&gt;UNIX의 IPC 종류&lt;/strong&gt;&lt;/p&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;Basic IPC : Pipe,FIFO(named pipe)&lt;/li&gt;
-  &lt;li&gt;Advanced IPC
-    &lt;ul&gt;
-      &lt;li&gt;Message passing&lt;/li&gt;
-      &lt;li&gt;semaphore&lt;/li&gt;
-      &lt;li&gt;shared memory&lt;/li&gt;
-      &lt;li&gt;socket(internet IPC , TCP/UDP)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+&lt;li&gt;Basic IPC : Pipe,FIFO(named pipe)&lt;/li&gt;
+&lt;li&gt;Advanced IPC
+&lt;ul&gt;
+&lt;li&gt;Message passing&lt;/li&gt;
+&lt;li&gt;semaphore&lt;/li&gt;
+&lt;li&gt;shared memory&lt;/li&gt;
+&lt;li&gt;socket(internet IPC , TCP/UDP)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content>
 
       
@@ -530,117 +443,106 @@ OS가 복잡 할수록 context 스위칭을 하는 동안 하는 일이 많아�
       <published>2020-04-17T00:00:00+09:00</published>
       <updated>2020-04-17T00:00:00+09:00</updated>
       <id>http://localhost:4000/os-thread</id>
-      <content type="html" xml:base="http://localhost:4000/os-thread">&lt;h2 id=&quot;process-모델의-한계점&quot;&gt;Process 모델의 한계점&lt;/h2&gt;
-
+      <content type="html" xml:base="http://localhost:4000/os-thread">&lt;h2 id=&quot;process--&quot;&gt;Process 모델의 한계점&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Cooperation 프로세스의 관점&lt;/strong&gt;
+&lt;li&gt;&lt;strong&gt;Cooperation 프로세스의 관점&lt;/strong&gt;
 웹 서버와 같이 자기 프로세스를 복사(fork)하여서 이용하는데, 만약 공유되는 주소 공간이나 자원이 있는 경우에 낭비가 심하다.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;멀티 프로세싱의 관점&lt;/strong&gt;
+&lt;li&gt;&lt;strong&gt;멀티 프로세싱의 관점&lt;/strong&gt;
 고전적 프로세스의 모델에서는 하나의 프로세스는 하나의 프로세서만을 이용함&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h2 id=&quot;thread&quot;&gt;Thread&lt;/h2&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;프로세스는 무겁다(heavy-weight)
-    &lt;ul&gt;
-      &lt;li&gt;프로세스는 image+ context를 전부 가지고 있음&lt;/li&gt;
-      &lt;li&gt;새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을 매우 비용이 많이듬.&lt;/li&gt;
-      &lt;li&gt;IPC를 통해 데이터 전달하는 것은 OS를 한번 거치므로 비용 많이듬.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Thread
+&lt;li&gt;
+&lt;p&gt;프로세스는 무겁다(heavy-weight)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스는 image+ context를 전부 가지고 있음&lt;/li&gt;
+&lt;li&gt;새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을 매우 비용이 많이듬.&lt;/li&gt;
+&lt;li&gt;IPC를 통해 데이터 전달하는 것은 OS를 한번 거치므로 비용 많이듬.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Thread
 프로그램에 의해서 실행되는 일련의 명령들&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;PC(program counter) + Stack(+SP) + data registers&lt;/li&gt;
-      &lt;li&gt;대부분의 데이터, 이미지들을 공유함&lt;/li&gt;
-      &lt;li&gt;프로세스의 OS 상태 또한 공유&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;PC(program counter) + Stack(+SP) + data registers&lt;/li&gt;
+&lt;li&gt;대부분의 데이터, 이미지들을 공유함&lt;/li&gt;
+&lt;li&gt;프로세스의 OS 상태 또한 공유&lt;/li&gt;
 &lt;/ul&gt;
-
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&quot;process-vs-thread&quot;&gt;Process vs Thread&lt;/h3&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;고전적 해석
-    &lt;ul&gt;
-      &lt;li&gt;프로세스는 쓰레드를 담고있는 컨테이너(하나의 프로세스안에 여러개의 쓰레드를 포함)&lt;/li&gt;
-      &lt;li&gt;프로세스는 정적, 쓰레드는 동적&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;공통점
-    &lt;ul&gt;
-      &lt;li&gt;각각 각자 자신의 실행 흐름을 가짐&lt;/li&gt;
-      &lt;li&gt;각각은 서로 다르게 스케쥴링&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;차이점&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Thead는 코드, 데이터를 공유, Process 는 공유 X&lt;/li&gt;
-      &lt;li&gt;Thread는 생성하는데 있어서 코스트가 Process에 비해서 매우 작음&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;thread의-이점&quot;&gt;Thread의 이점&lt;/h3&gt;
-
+&lt;li&gt;
+&lt;p&gt;고전적 해석&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;경제성&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;concurrency를 만드는 것이 쉽다(싸다).&lt;/li&gt;
-      &lt;li&gt;생성, 종료, 컨텍스트 스위칭의 시간이 적게든다(프로세스의 비해서)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;자원을 공유하므로 커뮤니케이션을 하는게 쉽다.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;여럿의 쓰레드는 같은 주소에서 같은 메모리와 파일들을 공유하므로 커널을 통하지 않아도 커뮤니케이션 가능&lt;/li&gt;
-      &lt;li&gt;반응속도 빠르다&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;멀티 프로세서를 잘 이용가능&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;각각의 쓰레드는 다른 프로세서에서 동작 가능&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+&lt;li&gt;프로세스는 쓰레드를 담고있는 컨테이너(하나의 프로세스안에 여러개의 쓰레드를 포함)&lt;/li&gt;
+&lt;li&gt;프로세스는 정적, 쓰레드는 동적&lt;/li&gt;
 &lt;/ul&gt;
-
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;공통점&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각각 각자 자신의 실행 흐름을 가짐&lt;/li&gt;
+&lt;li&gt;각각은 서로 다르게 스케쥴링&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;차이점&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Thead는 코드, 데이터를 공유, Process 는 공유 X&lt;/li&gt;
+&lt;li&gt;Thread는 생성하는데 있어서 코스트가 Process에 비해서 매우 작음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;thread-&quot;&gt;Thread의 이점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;경제성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;concurrency를 만드는 것이 쉽다(싸다).&lt;/li&gt;
+&lt;li&gt;생성, 종료, 컨텍스트 스위칭의 시간이 적게든다(프로세스의 비해서)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;자원을 공유하므로 커뮤니케이션을 하는게 쉽다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;여럿의 쓰레드는 같은 주소에서 같은 메모리와 파일들을 공유하므로 커널을 통하지 않아도 커뮤니케이션 가능&lt;/li&gt;
+&lt;li&gt;반응속도 빠르다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;멀티 프로세서를 잘 이용가능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각각의 쓰레드는 다른 프로세서에서 동작 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&quot;user-level-thread-vs-kernel-level-thread&quot;&gt;User-level-thread VS kernel-level-thread&lt;/h3&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;user-level-thread: 특정 라이브러리가 쓰레드와 관련된 것들을 관리.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;kernel-level-thread: OS가 쓰레드 생성과 관리를 하는데 있어서 관여(시스템콜 필요)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;유저-레벨-쓰레드&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;유저-레벨-쓰레드 라이브러리에서 모든 것을 관리&lt;/li&gt;
-      &lt;li&gt;커널은 아무것도 관여 하지 않음&lt;/li&gt;
-      &lt;li&gt;장점: 매우 가볍다. 생성, 관리, 스케쥴링을 모든 유저라이브러리에서 관여(mini-kernel)&lt;/li&gt;
-      &lt;li&gt;단점: I/O로 하나가 블락만 되도 전부 블락, 멀티 프로세서의 효과를 전혀 볼수 없음&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;커널-레벨-쓰레드
-    &lt;ul&gt;
-      &lt;li&gt;커널에 의해서 쓰레드가 생성되고 관리됨&lt;/li&gt;
-      &lt;li&gt;각각이 따로 스케쥴됨&lt;/li&gt;
-      &lt;li&gt;각각의 커널 스택을 갖고 있음&lt;/li&gt;
-      &lt;li&gt;kernel context와 글로벌 데이터를 공유&lt;/li&gt;
-      &lt;li&gt;커널의 일반적인 싱크로나이즈 하는 방식을 따름&lt;/li&gt;
-      &lt;li&gt;one to one model &amp;amp; many to many model(user-level-thread 방식을 믹스한 것)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+&lt;li&gt;user-level-thread: 특정 라이브러리가 쓰레드와 관련된 것들을 관리.&lt;/li&gt;
+&lt;li&gt;kernel-level-thread: OS가 쓰레드 생성과 관리를 하는데 있어서 관여(시스템콜 필요)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;유저-레벨-쓰레드&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;유저-레벨-쓰레드 라이브러리에서 모든 것을 관리&lt;/li&gt;
+&lt;li&gt;커널은 아무것도 관여 하지 않음&lt;/li&gt;
+&lt;li&gt;장점: 매우 가볍다. 생성, 관리, 스케쥴링을 모든 유저라이브러리에서 관여(mini-kernel)&lt;/li&gt;
+&lt;li&gt;단점: I/O로 하나가 블락만 되도 전부 블락, 멀티 프로세서의 효과를 전혀 볼수 없음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;커널-레벨-쓰레드&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;커널에 의해서 쓰레드가 생성되고 관리됨&lt;/li&gt;
+&lt;li&gt;각각이 따로 스케쥴됨&lt;/li&gt;
+&lt;li&gt;각각의 커널 스택을 갖고 있음&lt;/li&gt;
+&lt;li&gt;kernel context와 글로벌 데이터를 공유&lt;/li&gt;
+&lt;li&gt;커널의 일반적인 싱크로나이즈 하는 방식을 따름&lt;/li&gt;
+&lt;li&gt;one to one model &amp;amp; many to many model(user-level-thread 방식을 믹스한 것)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content>
 
       
@@ -677,27 +579,21 @@ OS가 복잡 할수록 context 스위칭을 하는 동안 하는 일이 많아�
       <published>2020-03-04T00:00:00+09:00</published>
       <updated>2020-03-04T00:00:00+09:00</updated>
       <id>http://localhost:4000/binary-search</id>
-      <content type="html" xml:base="http://localhost:4000/binary-search">&lt;h2 id=&quot;이분탐색&quot;&gt;이분탐색&lt;/h2&gt;
-
+      <content type="html" xml:base="http://localhost:4000/binary-search">&lt;h2 id=&quot;section&quot;&gt;이분탐색&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;binary search&lt;/strong&gt;는 탐색 방법중의 기초라고 할 수있을 정도로 쉽게 생각 할 수있고 거의 왠만한 개발하는 사람이라면 알고 있을 거라 생각하는데, 구현하려고 하면 조금 까다로운 부분이 있다.
 이걸 글로 쓰게된 이유는 가끔씩 문제를 풀다보면 이분탐색 문제가 나오는데,
 만족하는 특정 값 중에서 최소를 구하시오(&lt;strong&gt;lower_bound&lt;/strong&gt;), 최대를 구하시오(&lt;strong&gt;upper_bound&lt;/strong&gt;)같은 형식으로 구해야하는 경우가 존재하는데 매번 풀때마다 헷갈린다.
 따라서 정리를 해놓으려고 글을 작성한다.(200524 - 오타 수정)&lt;/p&gt;
-
-&lt;p&gt;기본적인 이분 탐색의 특징 (정렬되있어야하고, O(NogN)과 같은 특징)은 생략하겠다…&lt;/p&gt;
-
+&lt;p&gt;기본적인 이분 탐색의 특징 (정렬되있어야하고, O(NogN)과 같은 특징)은 생략하겠다...&lt;/p&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;둘 다 key값이 존재하지 않는 경우 key값보다 큰 값 중 가장 작은 값을 반환한다.
+&lt;p&gt;둘 다 key값이 존재하지 않는 경우 key값보다 큰 값 중 가장 작은 값을 반환한다.
 즉, 존재하는 key값이 여러개일 경우 사용된다고 생각하면 된다.&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;h2 id=&quot;upper_bound&quot;&gt;&lt;strong&gt;upper_bound&lt;/strong&gt;&lt;/h2&gt;
-
+&lt;h2 id=&quot;strongupperboundstrong&quot;&gt;&lt;strong&gt;upper_bound&lt;/strong&gt;&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;upper_bound라는 것은 만족하는 &lt;strong&gt;key 값을 초과하는 것&lt;/strong&gt; 중 &lt;strong&gt;가장 작은 것의 index&lt;/strong&gt;를 반환한다.(즉 key 보다 첫번째로 큰값)&lt;/li&gt;
-  &lt;li&gt;key 값이 존재 하지 않으면 key보다 첫번째로 큰 값을 반환&lt;/li&gt;
+&lt;li&gt;upper_bound라는 것은 만족하는 &lt;strong&gt;key 값을 초과하는 것&lt;/strong&gt; 중 &lt;strong&gt;가장 작은 것의 index&lt;/strong&gt;를 반환한다.(즉 key 보다 첫번째로 큰값)&lt;/li&gt;
+&lt;li&gt;key 값이 존재 하지 않으면 key보다 첫번째로 큰 값을 반환&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
         &lt;span class=&quot;c1&quot;&gt;// int target_val; &amp;lt;- target값
 &lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// int arr[N]; (오름차순으로 정렬되어있음)
@@ -714,17 +610,13 @@ OS가 복잡 할수록 context 스위칭을 하는 동안 하는 일이 많아�
        	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;p&gt;여기서 l을 반환하게 되는데 , 마지막에 l==r이 되면서 나오게 되는데,
 index l에 있는 값은 key보다 첫번째로 큰 값을 나타낸다.&lt;/p&gt;
-
-&lt;h2 id=&quot;lower_bound&quot;&gt;&lt;strong&gt;lower_bound&lt;/strong&gt;&lt;/h2&gt;
-
+&lt;h2 id=&quot;stronglowerboundstrong&quot;&gt;&lt;strong&gt;lower_bound&lt;/strong&gt;&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;lower_bound라는 것은 만족하는 &lt;strong&gt;key 값&lt;/strong&gt; 중 가장 작은것을 반환(가장 작은 index)&lt;/li&gt;
-  &lt;li&gt;key 값이 존재 하지 않으면 key보다 큰 가장 작은 정수를 반환&lt;/li&gt;
+&lt;li&gt;lower_bound라는 것은 만족하는 &lt;strong&gt;key 값&lt;/strong&gt; 중 가장 작은것을 반환(가장 작은 index)&lt;/li&gt;
+&lt;li&gt;key 값이 존재 하지 않으면 key보다 큰 가장 작은 정수를 반환&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
         &lt;span class=&quot;c1&quot;&gt;// int target_val; &amp;lt;- target값
 &lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// int arr[N]; (오름차순으로 정렬되어있음)
@@ -741,7 +633,6 @@ index l에 있는 값은 key보다 첫번째로 큰 값을 나타낸다.&lt;/p&g
        	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;p&gt;여기서 l을 반환하게 되는데 , 마지막에 l==r이 되면서 나오게 되는데,
 index l에 있는 값은 key값보다 큰것 중 가장 작은 값의 index 가리키고 있다. 만약 없다면 key값보다 작은 것중에 하나 더 큰 것 이므로 key값보다 큰 가장 작은값.&lt;/p&gt;</content>
 

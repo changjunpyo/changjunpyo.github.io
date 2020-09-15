@@ -180,27 +180,21 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <h2 id="이분탐색">이분탐색</h2>
-
+                    <h2 id="section">이분탐색</h2>
 <p><strong>binary search</strong>는 탐색 방법중의 기초라고 할 수있을 정도로 쉽게 생각 할 수있고 거의 왠만한 개발하는 사람이라면 알고 있을 거라 생각하는데, 구현하려고 하면 조금 까다로운 부분이 있다.
 이걸 글로 쓰게된 이유는 가끔씩 문제를 풀다보면 이분탐색 문제가 나오는데,
 만족하는 특정 값 중에서 최소를 구하시오(<strong>lower_bound</strong>), 최대를 구하시오(<strong>upper_bound</strong>)같은 형식으로 구해야하는 경우가 존재하는데 매번 풀때마다 헷갈린다.
 따라서 정리를 해놓으려고 글을 작성한다.(200524 - 오타 수정)</p>
-
-<p>기본적인 이분 탐색의 특징 (정렬되있어야하고, O(NogN)과 같은 특징)은 생략하겠다…</p>
-
+<p>기본적인 이분 탐색의 특징 (정렬되있어야하고, O(NogN)과 같은 특징)은 생략하겠다...</p>
 <blockquote>
-  <p>둘 다 key값이 존재하지 않는 경우 key값보다 큰 값 중 가장 작은 값을 반환한다.
+<p>둘 다 key값이 존재하지 않는 경우 key값보다 큰 값 중 가장 작은 값을 반환한다.
 즉, 존재하는 key값이 여러개일 경우 사용된다고 생각하면 된다.</p>
 </blockquote>
-
-<h2 id="upper_bound"><strong>upper_bound</strong></h2>
-
+<h2 id="strongupperboundstrong"><strong>upper_bound</strong></h2>
 <ul>
-  <li>upper_bound라는 것은 만족하는 <strong>key 값을 초과하는 것</strong> 중 <strong>가장 작은 것의 index</strong>를 반환한다.(즉 key 보다 첫번째로 큰값)</li>
-  <li>key 값이 존재 하지 않으면 key보다 첫번째로 큰 값을 반환</li>
+<li>upper_bound라는 것은 만족하는 <strong>key 값을 초과하는 것</strong> 중 <strong>가장 작은 것의 index</strong>를 반환한다.(즉 key 보다 첫번째로 큰값)</li>
+<li>key 값이 존재 하지 않으면 key보다 첫번째로 큰 값을 반환</li>
 </ul>
-
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
         <span class="c1">// int target_val; &lt;- target값
 </span>        <span class="c1">// int arr[N]; (오름차순으로 정렬되어있음)
@@ -217,17 +211,13 @@ into the {body} of the default.hbs template -->
        	<span class="k">return</span> <span class="n">l</span><span class="p">;</span>
 
 </code></pre></div></div>
-
 <p>여기서 l을 반환하게 되는데 , 마지막에 l==r이 되면서 나오게 되는데,
 index l에 있는 값은 key보다 첫번째로 큰 값을 나타낸다.</p>
-
-<h2 id="lower_bound"><strong>lower_bound</strong></h2>
-
+<h2 id="stronglowerboundstrong"><strong>lower_bound</strong></h2>
 <ul>
-  <li>lower_bound라는 것은 만족하는 <strong>key 값</strong> 중 가장 작은것을 반환(가장 작은 index)</li>
-  <li>key 값이 존재 하지 않으면 key보다 큰 가장 작은 정수를 반환</li>
+<li>lower_bound라는 것은 만족하는 <strong>key 값</strong> 중 가장 작은것을 반환(가장 작은 index)</li>
+<li>key 값이 존재 하지 않으면 key보다 큰 가장 작은 정수를 반환</li>
 </ul>
-
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
         <span class="c1">// int target_val; &lt;- target값
 </span>        <span class="c1">// int arr[N]; (오름차순으로 정렬되어있음)
@@ -244,7 +234,6 @@ index l에 있는 값은 key보다 첫번째로 큰 값을 나타낸다.</p>
        	<span class="k">return</span> <span class="n">l</span><span class="p">;</span>
 
 </code></pre></div></div>
-
 <p>여기서 l을 반환하게 되는데 , 마지막에 l==r이 되면서 나오게 되는데,
 index l에 있는 값은 key값보다 큰것 중 가장 작은 값의 index 가리키고 있다. 만약 없다면 key값보다 작은 것중에 하나 더 큰 것 이므로 key값보다 큰 가장 작은값.</p>
 

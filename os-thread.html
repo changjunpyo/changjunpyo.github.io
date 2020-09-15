@@ -184,117 +184,106 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <h2 id="process-모델의-한계점">Process 모델의 한계점</h2>
-
+                    <h2 id="process--">Process 모델의 한계점</h2>
 <ul>
-  <li><strong>Cooperation 프로세스의 관점</strong>
+<li><strong>Cooperation 프로세스의 관점</strong>
 웹 서버와 같이 자기 프로세스를 복사(fork)하여서 이용하는데, 만약 공유되는 주소 공간이나 자원이 있는 경우에 낭비가 심하다.</li>
-  <li><strong>멀티 프로세싱의 관점</strong>
+<li><strong>멀티 프로세싱의 관점</strong>
 고전적 프로세스의 모델에서는 하나의 프로세스는 하나의 프로세서만을 이용함</li>
 </ul>
-
 <h2 id="thread">Thread</h2>
-
 <ul>
-  <li>프로세스는 무겁다(heavy-weight)
-    <ul>
-      <li>프로세스는 image+ context를 전부 가지고 있음</li>
-      <li>새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을 매우 비용이 많이듬.</li>
-      <li>IPC를 통해 데이터 전달하는 것은 OS를 한번 거치므로 비용 많이듬.</li>
-    </ul>
-  </li>
-  <li>
-    <p>Thread
+<li>
+<p>프로세스는 무겁다(heavy-weight)</p>
+<ul>
+<li>프로세스는 image+ context를 전부 가지고 있음</li>
+<li>새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을 매우 비용이 많이듬.</li>
+<li>IPC를 통해 데이터 전달하는 것은 OS를 한번 거치므로 비용 많이듬.</li>
+</ul>
+</li>
+<li>
+<p>Thread
 프로그램에 의해서 실행되는 일련의 명령들</p>
-
-    <ul>
-      <li>PC(program counter) + Stack(+SP) + data registers</li>
-      <li>대부분의 데이터, 이미지들을 공유함</li>
-      <li>프로세스의 OS 상태 또한 공유</li>
-    </ul>
-  </li>
+<ul>
+<li>PC(program counter) + Stack(+SP) + data registers</li>
+<li>대부분의 데이터, 이미지들을 공유함</li>
+<li>프로세스의 OS 상태 또한 공유</li>
 </ul>
-
+</li>
+</ul>
 <h3 id="process-vs-thread">Process vs Thread</h3>
-
 <ul>
-  <li>고전적 해석
-    <ul>
-      <li>프로세스는 쓰레드를 담고있는 컨테이너(하나의 프로세스안에 여러개의 쓰레드를 포함)</li>
-      <li>프로세스는 정적, 쓰레드는 동적</li>
-    </ul>
-  </li>
-  <li>공통점
-    <ul>
-      <li>각각 각자 자신의 실행 흐름을 가짐</li>
-      <li>각각은 서로 다르게 스케쥴링</li>
-    </ul>
-  </li>
-  <li>
-    <p>차이점</p>
-
-    <ul>
-      <li>Thead는 코드, 데이터를 공유, Process 는 공유 X</li>
-      <li>Thread는 생성하는데 있어서 코스트가 Process에 비해서 매우 작음</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="thread의-이점">Thread의 이점</h3>
-
+<li>
+<p>고전적 해석</p>
 <ul>
-  <li>
-    <p>경제성</p>
-
-    <ul>
-      <li>concurrency를 만드는 것이 쉽다(싸다).</li>
-      <li>생성, 종료, 컨텍스트 스위칭의 시간이 적게든다(프로세스의 비해서)</li>
-    </ul>
-  </li>
-  <li>
-    <p>자원을 공유하므로 커뮤니케이션을 하는게 쉽다.</p>
-
-    <ul>
-      <li>여럿의 쓰레드는 같은 주소에서 같은 메모리와 파일들을 공유하므로 커널을 통하지 않아도 커뮤니케이션 가능</li>
-      <li>반응속도 빠르다</li>
-    </ul>
-  </li>
-  <li>
-    <p>멀티 프로세서를 잘 이용가능</p>
-
-    <ul>
-      <li>각각의 쓰레드는 다른 프로세서에서 동작 가능</li>
-    </ul>
-  </li>
+<li>프로세스는 쓰레드를 담고있는 컨테이너(하나의 프로세스안에 여러개의 쓰레드를 포함)</li>
+<li>프로세스는 정적, 쓰레드는 동적</li>
 </ul>
-
+</li>
+<li>
+<p>공통점</p>
+<ul>
+<li>각각 각자 자신의 실행 흐름을 가짐</li>
+<li>각각은 서로 다르게 스케쥴링</li>
+</ul>
+</li>
+<li>
+<p>차이점</p>
+<ul>
+<li>Thead는 코드, 데이터를 공유, Process 는 공유 X</li>
+<li>Thread는 생성하는데 있어서 코스트가 Process에 비해서 매우 작음</li>
+</ul>
+</li>
+</ul>
+<h3 id="thread-">Thread의 이점</h3>
+<ul>
+<li>
+<p>경제성</p>
+<ul>
+<li>concurrency를 만드는 것이 쉽다(싸다).</li>
+<li>생성, 종료, 컨텍스트 스위칭의 시간이 적게든다(프로세스의 비해서)</li>
+</ul>
+</li>
+<li>
+<p>자원을 공유하므로 커뮤니케이션을 하는게 쉽다.</p>
+<ul>
+<li>여럿의 쓰레드는 같은 주소에서 같은 메모리와 파일들을 공유하므로 커널을 통하지 않아도 커뮤니케이션 가능</li>
+<li>반응속도 빠르다</li>
+</ul>
+</li>
+<li>
+<p>멀티 프로세서를 잘 이용가능</p>
+<ul>
+<li>각각의 쓰레드는 다른 프로세서에서 동작 가능</li>
+</ul>
+</li>
+</ul>
 <h3 id="user-level-thread-vs-kernel-level-thread">User-level-thread VS kernel-level-thread</h3>
-
 <ul>
-  <li>user-level-thread: 특정 라이브러리가 쓰레드와 관련된 것들을 관리.</li>
-  <li>
-    <p>kernel-level-thread: OS가 쓰레드 생성과 관리를 하는데 있어서 관여(시스템콜 필요)</p>
-  </li>
-  <li>
-    <p>유저-레벨-쓰레드</p>
-
-    <ul>
-      <li>유저-레벨-쓰레드 라이브러리에서 모든 것을 관리</li>
-      <li>커널은 아무것도 관여 하지 않음</li>
-      <li>장점: 매우 가볍다. 생성, 관리, 스케쥴링을 모든 유저라이브러리에서 관여(mini-kernel)</li>
-      <li>단점: I/O로 하나가 블락만 되도 전부 블락, 멀티 프로세서의 효과를 전혀 볼수 없음</li>
-    </ul>
-  </li>
-  <li>커널-레벨-쓰레드
-    <ul>
-      <li>커널에 의해서 쓰레드가 생성되고 관리됨</li>
-      <li>각각이 따로 스케쥴됨</li>
-      <li>각각의 커널 스택을 갖고 있음</li>
-      <li>kernel context와 글로벌 데이터를 공유</li>
-      <li>커널의 일반적인 싱크로나이즈 하는 방식을 따름</li>
-      <li>one to one model &amp; many to many model(user-level-thread 방식을 믹스한 것)</li>
-    </ul>
-  </li>
+<li>user-level-thread: 특정 라이브러리가 쓰레드와 관련된 것들을 관리.</li>
+<li>kernel-level-thread: OS가 쓰레드 생성과 관리를 하는데 있어서 관여(시스템콜 필요)</li>
+</ul>
+<ul>
+<li>
+<p>유저-레벨-쓰레드</p>
+<ul>
+<li>유저-레벨-쓰레드 라이브러리에서 모든 것을 관리</li>
+<li>커널은 아무것도 관여 하지 않음</li>
+<li>장점: 매우 가볍다. 생성, 관리, 스케쥴링을 모든 유저라이브러리에서 관여(mini-kernel)</li>
+<li>단점: I/O로 하나가 블락만 되도 전부 블락, 멀티 프로세서의 효과를 전혀 볼수 없음</li>
+</ul>
+</li>
+<li>
+<p>커널-레벨-쓰레드</p>
+<ul>
+<li>커널에 의해서 쓰레드가 생성되고 관리됨</li>
+<li>각각이 따로 스케쥴됨</li>
+<li>각각의 커널 스택을 갖고 있음</li>
+<li>kernel context와 글로벌 데이터를 공유</li>
+<li>커널의 일반적인 싱크로나이즈 하는 방식을 따름</li>
+<li>one to one model &amp; many to many model(user-level-thread 방식을 믹스한 것)</li>
+</ul>
+</li>
 </ul>
 
                 </div>
