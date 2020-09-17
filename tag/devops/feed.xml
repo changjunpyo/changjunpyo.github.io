@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="http://localhost:4000/tag/devops/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2020-09-16T00:29:55+09:00</updated>
+  <updated>2020-09-17T23:58:42+09:00</updated>
   <id>http://localhost:4000/tag/devops/feed.xml</id>
 
   
@@ -95,7 +95,7 @@ docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;n
       
 
       
-        <summary type="html">젠킨스의 설정</summary>
+        <summary type="html">도커로 젠킨스를 설치해보자</summary>
       
 
       

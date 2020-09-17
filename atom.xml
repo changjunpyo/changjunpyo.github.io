@@ -23,7 +23,7 @@
       <item>
         <title>jenkins(1)-docker를 이용한 젠킨스 설치</title>
         
-          <description>젠킨스의 설정</description>
+          <description>도커로 젠킨스를 설치해보자</description>
         
         <pubDate>Tue, 08 Sep 2020 00:00:00 +0900</pubDate>
         <link>
