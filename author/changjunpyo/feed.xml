@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="http://localhost:4000/author/changjunpyo/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2020-09-18T00:07:46+09:00</updated>
+  <updated>2020-11-05T16:47:01+09:00</updated>
   <id>http://localhost:4000/author/changjunpyo/feed.xml</id>
 
   
@@ -30,6 +30,84 @@
   
   
 
+  
+    <entry>
+      <title type="html">Effective Java_(1)</title>
+      <link href="http://localhost:4000/Effective_java(1)" rel="alternate" type="text/html" title="Effective Java_(1)" />
+      <published>2020-11-05T00:00:00+09:00</published>
+      <updated>2020-11-05T00:00:00+09:00</updated>
+      <id>http://localhost:4000/Effective_java(1)</id>
+      <content type="html" xml:base="http://localhost:4000/Effective_java(1)">&lt;h1 id=&quot;section&quot;&gt;객체 생성과 파괴&lt;/h1&gt;
+&lt;h1 id=&quot;item-1-strong-----strong&quot;&gt;ITEM 1. &lt;strong&gt;생성자 대신 정적 팩토리 메서드를 고려하라&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;기본적인 클라이언트의 클래스 인스턴스를 생성하는 방식은 public constructor(생성자)이다.&lt;/p&gt;
+&lt;p&gt;하지만 추가적으로 클래스는 생성자와 별도로 정적 패터리 메서드를 제공할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TRUE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;FALSE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;strong-5strong&quot;&gt;&lt;strong&gt;장점 5가지&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;section-1&quot;&gt;1. 이름을 가질 수 있다.&lt;/h4&gt;
+&lt;p&gt;ex) 소수인 biginterger를 반환하는 방법을 생각해보자.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BigInterger(int, int , random)&lt;/strong&gt; 보다는 정적 팩터리 메서드인 &lt;strong&gt;BigInteger.probablePrime&lt;/strong&gt; 가 더 명확하게 의미를 설명해 준다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h4 id=&quot;section-2&quot;&gt;2. 호출 시 마다 인스턴스를 새로 생성하지 않아도 된다.&lt;/h4&gt;
+&lt;p&gt;불변 클래스는 인스턴스를 미리 만들어 놓거나 새로 생성한 인스턴스를 캐싱하여 재활용하는 식으로 불필요한 객체 생성을 피할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://lee1535.tistory.com/106&quot;&gt;플라이 웨이트 패턴(flyweight pattern)&lt;/a&gt;도 이와 비슷한 기법이라고 할 수 있다.
+&lt;br/&gt;&lt;/p&gt;
+&lt;h4 id=&quot;section-3&quot;&gt;3. 반환 타입의 하위 타입 객체를 반환할 수 있는 능력을 가진다.&lt;/h4&gt;
+&lt;p&gt;반환할 객체의 클래스를 자유롭게 선택할 수 있게 하는 '뛰어난 유연성'을 제공해 준다.&lt;/p&gt;
+&lt;p&gt;따라서 API를 만들 때 이 유연성을 응용하면 구현 클래스를 공개하지 않고도 그 객체를 반환할 수 있어 API를 작게 유지할 수 있다. 이것은 인터페이스를 정적 팩터리 메서드의 반환 타입으로 사용하는 인터페이스 기반 프레임워크를 만드는 핵심 기술이기도 하다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h4 id=&quot;section-4&quot;&gt;4. 입력 매개변수에 따라 매번 다른 클래스의 객체를 반환할 수 있다.&lt;/h4&gt;
+&lt;p&gt;반환 타입의 하위 타입이기만 하면 어떤 클래스의 객체를 반환 하든 상관이 없다.&lt;/p&gt;
+&lt;p&gt;심지어 다음 릴리스에서는 또 다른 클래스의 객체를 반환 해도 된다.&lt;/p&gt;
+&lt;p&gt;가령 EnumSet 클래스는 public 생성자 없이 오직 정적 팩터리만 제공하는데, OpenJDK에서는 원소의 수에 따라 두 가지 하위 클래스 중 하나의 인스턴스를 반환한다. 원소가 64개 이하이면 원소들을 long 변수로 관리하는 RegularEnumSet, 65개 이상이면 long 배열로 관리하는 JumboEnumSet의 인스턴스를 반환한다.&lt;/p&gt;
+&lt;h4 id=&quot;section-5&quot;&gt;5. 정적 팩터리 메서드를 작성하는 시점에는 반환할 객체의 클래스가 존재하지 않아도 된다.&lt;/h4&gt;
+&lt;p&gt;이러한 유연함은 서비스 제공자 프레임 워크를 만드는 근간이 된다. 대표적인 서비스 제공자 프레임 워크로는 JDBC가 있다. 서비스 제공자 프레임 워크에서 제공자는 서비스의 구현체다. 그리고 이 구현체들을 클라이언트에 제공하는 역할을 프레임 워크가 통제하여, 클라이언트를 구현체로부터 분리해준다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;h3 id=&quot;strong-2strong&quot;&gt;&lt;strong&gt;단점 2가지&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;public-protected-----------&quot;&gt;1. 상속을 하려면 public이나 protected 생성자가 필요하니 정적 팩터리 메서드만 제공하면 하위 클래스를 만들 수 없다.&lt;/h4&gt;
+&lt;p&gt;이와 같은 제약은 상속보다 컴포지션을 사용하도록 유도하고 불변 타입으로 만들려면 이 제약을 지켜야 한다는 점에서 오히려 장점으로 받아들일 수도 있다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h4 id=&quot;section-6&quot;&gt;2. 정적 팩터리 메서드는 프로그래머가 찾기 어렵다.&lt;/h4&gt;
+&lt;p&gt;생성자처럼 API 설명에 명확히 드러나지 않으니 사용자는 정적 팩터리 메서드 방식 클래스를 인스턴스화할 방법을 알아내야 한다. 이 일을 언젠가 자바독이 알아서 처리해줬으면 좋겠으나, 그날이 오기까지는 API 문서를 잘 써놓고 메서드 이름도 널리 알려진 규약을 따라 짓는 식으로 문제를 완화해줘야 한다.&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;h3 id=&quot;section-7&quot;&gt;결론&lt;/h3&gt;
+&lt;p&gt;기본적으로 public 생성자와 정적 팩터리 메서드는 각자의 쓰임새가 있으니 상대적인 장단점을 이해하고 사용하는 것이 중요하다!&lt;/p&gt;
+&lt;p&gt;But, 일반적으로는 정적 팩터리 메서드를 사용하는 것이 유리하다고 생각하자!
+왜냐면 유리한 경우가 더 많기 때문...&lt;/p&gt;
+&lt;h4 id=&quot;section-8&quot;&gt;참고&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Effective Java 3/e, Joshua Bloch&lt;/li&gt;
+&lt;/ol&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Junpyo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="java" />
+      
+
+      
+        <summary type="html">생성자 대신 정적 팩터리 메서드를 고려하라!</summary>
+      
+
+      
+      
+    </entry>
   
     <entry>
       <title type="html">DNS type 정리</title>
@@ -347,6 +425,142 @@ docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;n
     </entry>
   
     <entry>
+      <title type="html">Thread - OS(2)</title>
+      <link href="http://localhost:4000/os-thread" rel="alternate" type="text/html" title="Thread - OS(2)" />
+      <published>2020-04-17T00:00:00+09:00</published>
+      <updated>2020-04-17T00:00:00+09:00</updated>
+      <id>http://localhost:4000/os-thread</id>
+      <content type="html" xml:base="http://localhost:4000/os-thread">&lt;h2 id=&quot;process--&quot;&gt;Process 모델의 한계점&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cooperation 프로세스의 관점&lt;/strong&gt;
+웹 서버와 같이 자기 프로세스를 복사(fork)하여서 이용하는데, 만약 공유되는 주소 공간이나 자원이 있는 경우에 낭비가 심하다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;멀티 프로세싱의 관점&lt;/strong&gt;
+고전적 프로세스의 모델에서는 하나의 프로세스는 하나의 프로세서만을 이용함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;thread&quot;&gt;Thread&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;프로세스는 무겁다(heavy-weight)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스는 image+ context를 전부 가지고 있음&lt;/li&gt;
+&lt;li&gt;새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을 매우 비용이 많이듬.&lt;/li&gt;
+&lt;li&gt;IPC를 통해 데이터 전달하는 것은 OS를 한번 거치므로 비용 많이듬.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Thread
+프로그램에 의해서 실행되는 일련의 명령들&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PC(program counter) + Stack(+SP) + data registers&lt;/li&gt;
+&lt;li&gt;대부분의 데이터, 이미지들을 공유함&lt;/li&gt;
+&lt;li&gt;프로세스의 OS 상태 또한 공유&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;process-vs-thread&quot;&gt;Process vs Thread&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;고전적 해석&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스는 쓰레드를 담고있는 컨테이너(하나의 프로세스안에 여러개의 쓰레드를 포함)&lt;/li&gt;
+&lt;li&gt;프로세스는 정적, 쓰레드는 동적&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;공통점&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각각 각자 자신의 실행 흐름을 가짐&lt;/li&gt;
+&lt;li&gt;각각은 서로 다르게 스케쥴링&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;차이점&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Thead는 코드, 데이터를 공유, Process 는 공유 X&lt;/li&gt;
+&lt;li&gt;Thread는 생성하는데 있어서 코스트가 Process에 비해서 매우 작음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;thread-&quot;&gt;Thread의 이점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;경제성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;concurrency를 만드는 것이 쉽다(싸다).&lt;/li&gt;
+&lt;li&gt;생성, 종료, 컨텍스트 스위칭의 시간이 적게든다(프로세스의 비해서)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;자원을 공유하므로 커뮤니케이션을 하는게 쉽다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;여럿의 쓰레드는 같은 주소에서 같은 메모리와 파일들을 공유하므로 커널을 통하지 않아도 커뮤니케이션 가능&lt;/li&gt;
+&lt;li&gt;반응속도 빠르다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;멀티 프로세서를 잘 이용가능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각각의 쓰레드는 다른 프로세서에서 동작 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;user-level-thread-vs-kernel-level-thread&quot;&gt;User-level-thread VS kernel-level-thread&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;user-level-thread: 특정 라이브러리가 쓰레드와 관련된 것들을 관리.&lt;/li&gt;
+&lt;li&gt;kernel-level-thread: OS가 쓰레드 생성과 관리를 하는데 있어서 관여(시스템콜 필요)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;유저-레벨-쓰레드&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;유저-레벨-쓰레드 라이브러리에서 모든 것을 관리&lt;/li&gt;
+&lt;li&gt;커널은 아무것도 관여 하지 않음&lt;/li&gt;
+&lt;li&gt;장점: 매우 가볍다. 생성, 관리, 스케쥴링을 모든 유저라이브러리에서 관여(mini-kernel)&lt;/li&gt;
+&lt;li&gt;단점: I/O로 하나가 블락만 되도 전부 블락, 멀티 프로세서의 효과를 전혀 볼수 없음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;커널-레벨-쓰레드&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;커널에 의해서 쓰레드가 생성되고 관리됨&lt;/li&gt;
+&lt;li&gt;각각이 따로 스케쥴됨&lt;/li&gt;
+&lt;li&gt;각각의 커널 스택을 갖고 있음&lt;/li&gt;
+&lt;li&gt;kernel context와 글로벌 데이터를 공유&lt;/li&gt;
+&lt;li&gt;커널의 일반적인 싱크로나이즈 하는 방식을 따름&lt;/li&gt;
+&lt;li&gt;one to one model &amp;amp; many to many model(user-level-thread 방식을 믹스한 것)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Junpyo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="operating system" />
+      
+        <category term="os" />
+      
+
+      
+        <summary type="html">Process 모델의 한계점</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
       <title type="html">Process - OS(1)</title>
       <link href="http://localhost:4000/os-process" rel="alternate" type="text/html" title="Process - OS(1)" />
       <published>2020-04-17T00:00:00+09:00</published>
@@ -508,142 +722,6 @@ OS가 복잡 할수록 context 스위칭을 하는 동안 하는 일이 많아�
 
       
         <summary type="html">Process</summary>
-      
-
-      
-      
-    </entry>
-  
-    <entry>
-      <title type="html">Thread - OS(2)</title>
-      <link href="http://localhost:4000/os-thread" rel="alternate" type="text/html" title="Thread - OS(2)" />
-      <published>2020-04-17T00:00:00+09:00</published>
-      <updated>2020-04-17T00:00:00+09:00</updated>
-      <id>http://localhost:4000/os-thread</id>
-      <content type="html" xml:base="http://localhost:4000/os-thread">&lt;h2 id=&quot;process--&quot;&gt;Process 모델의 한계점&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cooperation 프로세스의 관점&lt;/strong&gt;
-웹 서버와 같이 자기 프로세스를 복사(fork)하여서 이용하는데, 만약 공유되는 주소 공간이나 자원이 있는 경우에 낭비가 심하다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;멀티 프로세싱의 관점&lt;/strong&gt;
-고전적 프로세스의 모델에서는 하나의 프로세스는 하나의 프로세서만을 이용함&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;thread&quot;&gt;Thread&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;프로세스는 무겁다(heavy-weight)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;프로세스는 image+ context를 전부 가지고 있음&lt;/li&gt;
-&lt;li&gt;새로 프로세스 생성시 위의 모두를 복사해서 할당하는 것을 매우 비용이 많이듬.&lt;/li&gt;
-&lt;li&gt;IPC를 통해 데이터 전달하는 것은 OS를 한번 거치므로 비용 많이듬.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Thread
-프로그램에 의해서 실행되는 일련의 명령들&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;PC(program counter) + Stack(+SP) + data registers&lt;/li&gt;
-&lt;li&gt;대부분의 데이터, 이미지들을 공유함&lt;/li&gt;
-&lt;li&gt;프로세스의 OS 상태 또한 공유&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;process-vs-thread&quot;&gt;Process vs Thread&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;고전적 해석&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;프로세스는 쓰레드를 담고있는 컨테이너(하나의 프로세스안에 여러개의 쓰레드를 포함)&lt;/li&gt;
-&lt;li&gt;프로세스는 정적, 쓰레드는 동적&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;공통점&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;각각 각자 자신의 실행 흐름을 가짐&lt;/li&gt;
-&lt;li&gt;각각은 서로 다르게 스케쥴링&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;차이점&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Thead는 코드, 데이터를 공유, Process 는 공유 X&lt;/li&gt;
-&lt;li&gt;Thread는 생성하는데 있어서 코스트가 Process에 비해서 매우 작음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;thread-&quot;&gt;Thread의 이점&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;경제성&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;concurrency를 만드는 것이 쉽다(싸다).&lt;/li&gt;
-&lt;li&gt;생성, 종료, 컨텍스트 스위칭의 시간이 적게든다(프로세스의 비해서)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;자원을 공유하므로 커뮤니케이션을 하는게 쉽다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;여럿의 쓰레드는 같은 주소에서 같은 메모리와 파일들을 공유하므로 커널을 통하지 않아도 커뮤니케이션 가능&lt;/li&gt;
-&lt;li&gt;반응속도 빠르다&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;멀티 프로세서를 잘 이용가능&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;각각의 쓰레드는 다른 프로세서에서 동작 가능&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;user-level-thread-vs-kernel-level-thread&quot;&gt;User-level-thread VS kernel-level-thread&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;user-level-thread: 특정 라이브러리가 쓰레드와 관련된 것들을 관리.&lt;/li&gt;
-&lt;li&gt;kernel-level-thread: OS가 쓰레드 생성과 관리를 하는데 있어서 관여(시스템콜 필요)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;유저-레벨-쓰레드&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;유저-레벨-쓰레드 라이브러리에서 모든 것을 관리&lt;/li&gt;
-&lt;li&gt;커널은 아무것도 관여 하지 않음&lt;/li&gt;
-&lt;li&gt;장점: 매우 가볍다. 생성, 관리, 스케쥴링을 모든 유저라이브러리에서 관여(mini-kernel)&lt;/li&gt;
-&lt;li&gt;단점: I/O로 하나가 블락만 되도 전부 블락, 멀티 프로세서의 효과를 전혀 볼수 없음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;커널-레벨-쓰레드&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;커널에 의해서 쓰레드가 생성되고 관리됨&lt;/li&gt;
-&lt;li&gt;각각이 따로 스케쥴됨&lt;/li&gt;
-&lt;li&gt;각각의 커널 스택을 갖고 있음&lt;/li&gt;
-&lt;li&gt;kernel context와 글로벌 데이터를 공유&lt;/li&gt;
-&lt;li&gt;커널의 일반적인 싱크로나이즈 하는 방식을 따름&lt;/li&gt;
-&lt;li&gt;one to one model &amp;amp; many to many model(user-level-thread 방식을 믹스한 것)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</content>
-
-      
-      
-      
-      
-      
-
-      <author>
-          <name>Junpyo</name>
-        
-        
-      </author>
-
-      
-
-      
-        <category term="operating system" />
-      
-        <category term="os" />
-      
-
-      
-        <summary type="html">Process 모델의 한계점</summary>
       
 
       
