@@ -8,9 +8,22 @@
     
       
       <item>
-        <title>Effective Java_(1)</title>
+        <title>Effective Java_(2)</title>
         
-          <description>생성자 대신 정적 팩터리 메서드를 고려하라!</description>
+          <description>생성자에 매개변수가 많다면 빌더를 고려하라!</description>
+        
+        <pubDate>Fri, 06 Nov 2020 00:00:00 +0900</pubDate>
+        <link>
+        http://localhost:4000/Effective_java(2)</link>
+        <guid isPermaLink="true">http://localhost:4000/Effective_java(2)</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Effective Java_(2)</title>
+        
+          <description>생성자에 매개변수가 많다면 빌더를 고려하라!</description>
         
         <pubDate>Thu, 05 Nov 2020 00:00:00 +0900</pubDate>
         <link>
